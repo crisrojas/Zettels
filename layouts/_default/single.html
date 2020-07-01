@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{{ partial "head.html" . }}
+<body class="note-wrapper">
+	<iframe id="mySidenav" name="split" class="sidenav" src=""></iframe>
+	<div id="main" class="container wrapper post">
+		{{ partialCached "navbar.html" . }}
+		
+		
+		<article class="content" style="margin-top:4rem"> 
+			{{ partial "content.html" . }}
+		</article>
+	
+	</div>
+
+{{ partial "search.html" . }}
+{{ partial "scripts.html" }}
+{{ partial "backlinks.html" . }}
+
+
+	
+</body>
+</html>

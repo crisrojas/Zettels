@@ -1,0 +1,264 @@
+/* @override 
+	http://192.168.0.24:1313/css/style.css
+	http://192.168.0.25:1313/css/style.css
+	 */
+
+
+
+
+@import "variables";
+@import "utilities/media-queries";
+@import "utilities/visibility";
+@import "utilities/normalize";
+@import "utilities/reset";
+
+
+
+
+/* @group Base */
+html {
+	font-size: $font-size;
+	line-height: 1.6em;
+	-webkit-text-size-adjust: 100%
+}
+
+body {
+	background: $bg;
+	color: $text-color;
+	text-rendering: optimizeLegibility;
+	font-family: $font-family;
+	font-weight: $font-weight;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: $a-color;
+	text-decoration: $a-text-decoration;
+	display: $a-display;
+}
+
+svg, a svg {
+	fill: $text-color;
+	color: $text-color;
+	stroke: $text-color;
+}
+hr {
+	height: 1px;
+	border: 0;
+	background-color: $hr-bg;
+	margin: -1px auto 1.57143em auto
+}
+
+b, strong {
+	font-family: $font-bold;
+	font-weight: bold;
+}
+
+i, em {
+	font-family: $font-italic;
+	font-style: italic;
+}
+
+s, del {
+	color: #878787
+}
+
+blockquote {
+	display: block;
+	margin-bottom: $d4;
+	font-style: italic;
+	font-size: $text-lg;
+	font-weight: lighter;
+	//padding: $d3;
+	border-left: $blockquote-border-size solid $blockquote-left-border-color;
+}
+blockquote p {
+	padding: $d4;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: $selected-text-color;
+  background: $selected-text-bg;
+}
+
+/* @end */
+
+/* @group Lists */
+ul {
+	list-style: none;
+}
+ol {
+	list-style: none;
+}
+
+ul, ol {
+	margin-bottom: 2rem;
+}
+
+ol {
+	counter-reset: ol_counter
+}
+
+ol ol, ul ul {
+	margin-left: 1.25714em;
+	margin-bottom: 0px;
+}
+
+ol li {
+	position: relative;
+	//text-indent: -1.45em
+}
+
+ol li:before {
+	content: counter(ol_counter) ".";
+	counter-increment: ol_counter;
+	color: $ol-color;
+	text-align: right;
+	display: inline-block;
+	min-width: 1em;
+	margin-right: 0.5em;
+	font-size: 0.75rem;
+	font-weight: bold;
+	position: absolute;
+	left: -1.25rem;
+	@include to(m) {
+		left: -$d3;
+	}
+}
+
+ul li {
+	position: relative;
+	/*text-indent: -0.35em*/
+	
+}
+
+ul li:before {
+	position: absolute;
+	//content: "\2022";
+	//content: "\26AC";
+	color: $ul-color;
+	width: 1em;
+	display: inline-block;
+	margin-left: -$d5;
+}
+
+
+
+/* @end */
+
+/* @group Code */
+
+code, pre {
+	font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+pre {
+	-moz-tab-size:    4; /* Firefox 4+ */
+	-o-tab-size:      4; /* Opera 11.5 & 12.1 only */
+	tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */
+	padding: 0.75rem;
+	margin-bottom: 1rem !important;
+	border-radius: $pre-border-radius;
+	font-size: $pre-font-size;
+}
+
+
+// Inline-blocks
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, li code, p code {
+	background: $inline-code-bg;
+	//border: 1px solid #90cdf4; 
+	border-radius: 0.25rem;
+	font-family: monospace;
+	color: $inline-code-color; 
+	font-size: 0.86rem;
+	padding: 2px 0.25rem;
+}
+
+
+/* @end */
+
+/* @group Typography */
+h1,h2,h3,h4,h5,h6 {
+	font-family: $headings-font;
+	color:  $headings-color;
+	margin-top: $headings-mt;
+	margin-bottom: $headings-mb;
+	font-weight: bold;
+	
+}
+h1 {
+
+	font-size: 1.75rem;
+	line-height: 1.3em;
+
+}
+
+h2 {
+
+	font-size: 1.5em;
+	line-height: 1.3em;
+	
+}
+
+h3 {
+	
+	font-size: 1.25em;
+	line-height: 1em;
+	
+}
+
+p {
+	margin-bottom: $p-mb;
+	line-height: $p-lh;
+	hyphens: auto
+}
+
+/* @end */
+
+
+
+
+/* @group Components */
+
+@import "components/syntax";
+@import "components/clipboard";
+@import "components/zettel-links";
+@import "components/navbar";
+@import "components/footnotes";
+@import "components/zoomimg";
+@import "components/sidenav";
+@import "components/torefactor";
+@import "components/search";
+@import "components/backlinks";
+
+
+@mixin stickyFooter {
+  @at-root {
+    body {
+      display        : flex;
+      flex-direction : column;
+      min-height     : 100vh;
+    }
+ }
+}
+  
+.main-footer {
+	text-align: center;
+	//background: #f5f5f5 url('../images/bg.jpg') no-repeat left top;
+	//@include stickyFooter();
+}
+
+/* @end */
+
+/* @group Utilities */
+
+.hidden {
+	display: none;
+}
+
+/* @end */

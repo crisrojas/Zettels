@@ -1,0 +1,20 @@
+/* @group footnotes */
+.footnote-ref {
+	border-radius: 100%;
+	font-weight: bold;
+	font-size: 10px;
+	color: $footnote-color;
+	text-decoration: none;
+	
+	
+}
+.footnote-backref {
+	
+	text-decoration: none;
+}
+.footnotes {
+	@include to(m) {
+		padding: 1rem;
+	}
+}
+/* @end */

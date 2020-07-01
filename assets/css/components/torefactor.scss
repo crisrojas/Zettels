@@ -1,0 +1,16 @@
+/* @group classes to refactor */
+
+.note-wrapper {
+	max-width: $container-width;
+	margin: 0px auto;
+	padding: 1.25rem;
+	@include from(m) {
+		padding: 1.57143em 3.14286em;
+	}
+}
+
+li p {
+	margin-bottom: 0px !important;
+}
+
+/* @end */

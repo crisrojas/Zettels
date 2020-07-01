@@ -1,0 +1,71 @@
+/* @group code */
+
+
+/* @group copy-button */
+pre {
+	position: relative;
+	
+}
+
+.copy-button {
+	cursor: pointer;
+	border: 0;
+	font-size: 10px;
+	background-color: #313746;
+	text-transform: uppercase;
+	font-weight: 500;
+	padding: 6px 10px 10px;
+	color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.copy-button:hover,
+.copy-button:focus,
+.copy-button:active {
+	outline: 0;
+	background-color:black;
+}
+
+.copy-button:before {
+	content: '';
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 6px;
+	background-size: contain;
+	background-color: #313746;
+	background-image: url('../images/clipboard.svg');
+	background-repeat: no-repeat;
+	position: relative;
+	top: 3px;
+}
+
+.content-section {
+	padding: 40px;
+}
+.content-section--paste {
+	margin-top: 60px;
+	background-color: #CFD8DC;
+}
+.content-section--paste h1 {
+	font-size: 12px;
+	color: #546E7A;
+	text-transform: uppercase;
+}
+
+#paste-content {
+	border: 2px dashed #B0BEC5;
+	min-height: 160px;
+}
+#paste-content:focus {
+	outline: 0;
+	border-color: #90A4AE;
+}
+#paste-content pre {
+	margin: 0 !important;
+}
+/* @end */
+
+/* @end */

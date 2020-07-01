@@ -1,0 +1,47 @@
+/* @group navbar */
+.navbar {
+	margin-bottom: $d8;
+}
+.navbar-buttons {
+    //text-align: center;
+    //content: "";
+	//clear: both;
+	margin: 0 auto;
+    display: table;
+    
+}
+.navbar-button {
+    float: left;
+	//margin-right: 8px;
+	background: $navbar-bg;
+    border: $navbar-button-border;
+    box-shadow: $navbar-button-box-shadow;
+    border-radius: $rounded-sm;
+    display: inline-block;
+	cursor: pointer;
+}
+.button-back {
+    //margin-right: 0;
+    border-radius: $rounded-sm 0 0 $rounded-sm;
+    border-right: 0;
+}
+
+.button-forward {
+    border-radius: 0 $rounded-sm $rounded-sm 0;
+}
+.button-close {
+	background: $button-close-bg;
+}
+
+.navbar-button svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin: 4px 6px;
+}
+
+.navbar-button:hover {
+    background: $navbar-button-hover;
+}
+
+/* @end */

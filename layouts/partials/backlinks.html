@@ -1,0 +1,16 @@
+{{ $bracket1 := "\\[\\[" }}
+{{ $bracket2 := "\\]\\]" }}
+{{ $filename := .File.BaseFileName }}
+
+{{ $path :=  printf "%s%s%s" $bracket1 $filename $bracket2 }}
+
+
+<ul class="backlinks">
+<h3 style="margin-top: 0px;">Backlinks</h3>
+{{ range .Site.Pages }}
+{{ if findRE $path .Content }}
+<li><a title="split view" class="zettel-split" href="{{ .Permalink }}" target="split" onclick="openNav()"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="expand"><polygon points="13 2 18 2 18 7 17 7 17 3 13 3"></polygon><polygon points="2 13 3 13 3 17 7 17 7 18 2 18"></polygon><path fill="none" stroke="" stroke-width="1.1" d="M11,9 L17,3"></path><path fill="none" stroke="" stroke-width="1.1" d="M3,17 L9,11"></path></svg></a><a href="{{ .Permalink }}" style="margin-left: 0.25rem;">{{ .Title }}</a></li>
+
+{{ end }}
+{{ end }}
+</ul>

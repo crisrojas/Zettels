@@ -1,0 +1,14 @@
+<div class="navbar">
+    <div class="navbar-buttons">
+        <a id="close-btn" style="transition: 15s;" onclick="closeNav()" class="hidden navbar-button button-back button-close"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="close"><path fill="none" stroke="#000" stroke-width="1.06" d="M16,16 L4,4"></path><path fill="none" stroke="#000" stroke-width="1.06" d="M16,4 L4,16"></path></svg></a>
+        <a id="back-btn" title="use <- arrow" href="javascript:window.history.back();" class="navbar-button button-back"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="arrow-left"><polyline fill="none" stroke="" points="10 14 5 9.5 10 5"></polyline><line fill="none" stroke="" x1="16" y1="9.5" x2="5" y2="9.52"></line></svg></a>
+        <a title="use up arrow" href="{{ if .Params.Home }}{{ .Params.Home }}{{ else }}javascript:document.location='/';{{ end }}" class="navbar-button button-forward"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="stroke:none" data-svg="home"><polygon points="18.65 11.35 10 2.71 1.35 11.35 0.65 10.65 10 1.29 19.35 10.65"></polygon><polygon points="15 4 18 4 18 7 17 7 17 5 15 5"></polygon><polygon points="3 11 4 11 4 18 7 18 7 12 12 12 12 18 16 18 16 11 17 11 17 19 11 19 11 13 8 13 8 19 3 19"></polygon></svg></a>
+		
+        
+    </div>
+	
+	
+
+
+</div>
+

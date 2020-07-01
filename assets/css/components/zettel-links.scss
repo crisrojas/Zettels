@@ -1,0 +1,33 @@
+.zettel-link {
+	width: 100%;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	border-radius: 0.25rem;
+	margin-right: $d2;
+	background: $zettel-link-bg;
+	color: $text-color;
+	@include from(m) {
+		margin-left: 0.5rem;
+	}
+}
+
+
+.zettel-split {
+	background: $zettel-split-bg;
+	@include to(m) {
+		display: none!important;
+	}
+	//background: $gray-300;
+	border-radius: 0.25rem;
+	color: $text-color;
+	//border: 1px solid $gray-400;
+}
+
+.zettel-split svg, .zettel-link svg{
+	height: 12px;
+}
+.zettel-split:hover {
+	background: $zettel-split-hover-bg;
+}
+.zettel-link:hover {
+	background: $zettel-link-hover-bg;
+}

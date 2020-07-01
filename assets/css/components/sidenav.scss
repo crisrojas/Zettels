@@ -1,0 +1,25 @@
+/* @group sidenav */
+.sidenav {
+height: 100vh;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+right: 0;
+transition: 0.3s;
+border-width: 0;
+border-left: $sidenav-border;
+box-shadow: $sidenav-box-shadow;
+}
+.sidenav .closebtn {
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
+}
+
+#main {
+transition: margin-right .5s;
+}
+/* @end */

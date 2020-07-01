@@ -1,0 +1,9 @@
+.backlinks {
+	background: darken($bg,5);
+	padding: $d5;
+	border-radius: $rounded-lg;
+	font-size: $text-sm;
+	a {
+		text-decoration: none;
+	}
+}

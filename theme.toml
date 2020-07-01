@@ -1,0 +1,16 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Zettels"
+license = "MIT"
+licenselink = "@todo"
+description = "@todo"
+homepage = "@todo"
+tags = ["@todo"]
+features = ["@todo"]
+min_version = "0.0.1"
+assetsDir = "assets"
+
+[author]
+  name = "Cristian Rojas"
+  homepage = "https://crisrojas.com"

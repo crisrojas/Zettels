@@ -1,0 +1,6 @@
+<!-- Función regex que remplaza los wikilinks por links cliclables -->
+{{ .Content | replaceRE "\\[\\[([^/]+)\\]\\]" "<a title=\"split view\" class=\"zettel-split\" href=\"${1}.html\" target=\"split\" onclick=\"openNav()\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\" data-svg=\"expand\"><polygon points=\"13 2 18 2 18 7 17 7 17 3 13 3\"></polygon><polygon points=\"2 13 3 13 3 17 7 17 7 18 2 18\"></polygon><path fill=\"none\" stroke=\"\" stroke-width=\"1.1\" d=\"M11,9 L17,3\"></path><path fill=\"none\" stroke=\"\" stroke-width=\"1.1\" d=\"M3,17 L9,11\"></path></svg></a><a title=\"open\" class=\"zettel-link\" href=\"${1}.html\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\" data-svg=\"play\"><polygon fill=\"none\" points=\"6.5,5 14.5,10 6.5,15\"></polygon></svg></a>" |safeHTML }}
+
+
+
+

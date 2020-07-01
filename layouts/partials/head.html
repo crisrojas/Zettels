@@ -1,0 +1,42 @@
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	{{- $title := ( .Title ) -}}
+	{{- $siteTitle := ( .Site.Title ) -}}
+	{{- if .IsHome -}}
+	<title>{{ $siteTitle }} {{ if isset .Site.Params "subtitle" }}- {{ .Site.Params.Subtitle }}{{ end }} </title>
+	{{- else -}}
+	<title>{{ $title }} - {{ $siteTitle }}</title>
+	{{- end -}}
+
+	{{- if isset .Site.Params "favicon" -}}
+	<link rel="icon" type="image/png" href={{ .Site.Params.favicon }} />
+	{{- end -}}
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{ with .OutputFormats.Get "rss" -}}
+	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+
+	{{- template "_internal/opengraph.html" . -}}
+	{{- template "_internal/twitter_cards.html" . -}}
+
+	{{ $favicon := resources.Get "favicon.ico" | fingerprint }}
+	
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
+	
+	<link rel="shortcut icon" href="{{ $favicon.Permalink }}">
+	
+	{{ $main := resources.Get "css/style.scss" | toCSS | minify | fingerprint }}
+	
+	<link rel="stylesheet" href="{{ $main.Permalink }}">
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.2/clipboard.min.js"></script>
+	
+	{{ if not .Site.IsServer }}
+	
+		{{ template "_internal/google_analytics.html" . }}
+	
+	{{ end }}
+	
+</head>

@@ -1,0 +1,19 @@
+ 
+{{ $fuse		:= resources.Get "js/fuse.js" }}
+{{ $fastsearch  := resources.Get "js/fastsearch.js" }}
+{{ $jquery		:= resources.Get "js/jquery.js" }}
+{{ $clipboard   := resources.Get "js/clipboard.js" }}
+{{ $copycode  	:= resources.Get "js/copycode.js" }}
+{{ $nav 		:= resources.Get "js/nav.js" }}
+{{ $collage 		:= resources.Get "js/collage.js" }}
+{{ $defaultJS 	:= slice $jquery $fastsearch $fuse $nav $copycode $collage | resources.Concat "js/global.js" }}
+ 
+ 	
+<script src="{{ $defaultJS.Permalink }}" type="text/javascript" defer></script>
+ 
+ 
+ 
+
+
+
+
