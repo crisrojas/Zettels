@@ -12,7 +12,7 @@ See [hugo documentation](https://gohugo.io/getting-started/installing) to get st
 
 Put this theme inside the "themes" folder.
 
-You would want to add some elements files (uglyURLs, output json, ...) 
+You would want to add some elements inside your config.toml file (uglyURLs, output json, ...) 
 
 Here you have an exemple of a `config.toml` file that has all you need:
 
@@ -63,7 +63,7 @@ Output:
 <a href="biology.html">biology</a>
 ```
 
-Make sure your filenames contain not spaces as this isn't supported by the theme.
+Make sure your filenames contain not spaces as this isn't supported by the regex yet.
 
 **DO**
 
@@ -83,7 +83,7 @@ biología celular.md ⛔️
 
 ### Backlinks
 
-Backlinks are supported right out the box. To use it  properly you would want to give a title to each of your notes in the yaml header,  like so:
+Backlinks are supported right out the box. To use them properly you would want to give a title to each of your notes in the yaml header,  like so:
 
 ```
 ---
