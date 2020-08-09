@@ -11,7 +11,7 @@ Becomes this
 ![](media/sitescreenshot.png)
 
 
-Please note that espaces between filenames **are not allowed**
+Please note that spaces between filenames **are not allowed**
 
 
 ```shell
