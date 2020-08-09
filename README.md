@@ -1,4 +1,4 @@
-Online Zettelkästen built with[Hugo](https://gohugo.io/)
+Online Zettelkästen built with [Hugo](https://gohugo.io/)
 
 
 
@@ -14,7 +14,7 @@ Put this theme inside the "themes" folder.
 
 You would want to add some elements inside your config.toml file (uglyURLs, output json, ...) 
 
-Here you have an exemple of a `config.toml` file that has all you need:
+Here you have an example of a `config.toml` file that has all you need:
 
 ```toml
 languageCode = "en-EN"
