@@ -1,9 +1,10 @@
 {{ $bracket1 := "\\[\\[" }}
 {{ $bracket2 := "\\]\\]" }}
+{{ $fileDir := .File.Dir }}
+{{ if eq $fileDir "/" }} {{ $fileDir = "" }} {{ end }}
 {{ $filename := .File.BaseFileName }}
 
-{{ $path :=  printf "%s%s%s" $bracket1 $filename $bracket2 }}
-
+{{ $path :=  printf "%s%s%s%s" $bracket1 $fileDir $filename $bracket2 }}
 
 <ul class="backlinks">
 <h3 style="margin-top: 0px;">Backlinks</h3>
