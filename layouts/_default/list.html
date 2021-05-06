@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<h1>{{ .Title }}</h1>
+
+	{{- if and (isset .Params "privado") (eq .Params.privado true) -}}
+		{{ if .Site.IsServer }}
+			<p>&#128274;</p>
+			{{ partial "content.html" . }}
+		{{ else }}
+			<p>&#128274; Nota privada</p>
+		{{ end }}
+	{{- else -}}
+		{{ partial "content.html" . }}
+	{{- end -}}
+
+{{ partial "backlinks.html" . }}
+
+{{ end }}

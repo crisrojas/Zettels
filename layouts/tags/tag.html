@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+    <header>
+        <h1>{{.Title}}</h1>
+    </header>
+
+
+<ol>
+    {{ range .Pages }}
+        <li><a href="{{.Permalink | relURL }}"><span class="tag tag-{{anchorize .Title}} tag-lg">#{{ anchorize .Title}}</span></a></li>
+    {{ end }}</ol>
+
+{{ end }}

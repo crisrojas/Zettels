@@ -1,16 +1,50 @@
-{{ $bracket1 := "\\[\\[" }}
-{{ $bracket2 := "\\]\\]" }}
+<!-- 
+
+Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent false positives: Otherwise, for a note whose filename/title is "now", every note containing the word "now" would be appended as a backlink)
+
+-->  
+
+{{ $firstBracket := "\\[\\[" }}
+{{ $lastBracket := "\\]\\]" }}
 {{ $filename := .File.BaseFileName }}
+{{ $wikilink :=  printf "%s%s%s" $firstBracket $filename $lastBracket }}
 
-{{ $path :=  printf "%s%s%s" $bracket1 $filename $bracket2 }}
+{{- $.Scratch.Add "backlinks" slice -}}
+<h3>Referenciada en:</h3>
 
+<ul>
+{{- range .Site.RegularPages -}}
+	{{ if (findRE $wikilink .Content) }}
+		{{ $.Scratch.Add "backlinks" (dict .Permalink .Title) }}
+		<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+	{{ end }}
+{{- end -}}
 
-<ul class="backlinks">
-<h3 style="margin-top: 0px;">Backlinks</h3>
-{{ range .Site.Pages }}
-{{ if findRE $path .Content }}
-<li><a title="split view" class="zettel-split" href="{{ .Permalink }}" target="split" onclick="openNav()"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="expand"><polygon points="13 2 18 2 18 7 17 7 17 3 13 3"></polygon><polygon points="2 13 3 13 3 17 7 17 7 18 2 18"></polygon><path fill="none" stroke="" stroke-width="1.1" d="M11,9 L17,3"></path><path fill="none" stroke="" stroke-width="1.1" d="M3,17 L9,11"></path></svg></a><a href="{{ .Permalink }}" style="margin-left: 0.25rem;">{{ .Title }}</a></li>
+{{- $backlinks := $.Scratch.Get "backlinks" -}}   
 
-{{ end }}
+{{ if le (len $backlinks) 0 }}
+	<li>No hay referencias</li>
 {{ end }}
 </ul>
+
+
+
+<!-- 
+{{/*
+{{ if gt (len $backlinks) 0}}
+
+	<h3>Referenciada en</h3>
+<ul>
+	{{ range $backlinks }}
+		
+		{{ range $permalink, $title := . }}
+			<li><a href="{{ $permalink }}">{{ $title }}</a></li>
+			
+		{{ end }}
+	{{ end }}
+</ul>
+{{ else }}
+{{ end }}
+*/}} 
+-->
+

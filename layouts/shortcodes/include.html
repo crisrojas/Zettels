@@ -1,0 +1,18 @@
+{{$file := .Get 0}}
+{{$extension := ".md" }}
+{{ $filename := trim $file $extension }}
+
+{{ $wikiregex := "\\[\\[([^/]+)\\]\\]" }}
+
+<div class="transcluded-container" style="position: relative;">
+{{ with .Site.GetPage $file }}
+<p class="view-transcluded hidden" style="position: absolute;top: 10px;left: -10px;"><a href="{{ .Permalink }}">🔗</a></p>
+<a class="hover:bg-green-100 rounded-md block mt-4"href="{{ .Permalink }}">
+<!-- We add the content of the transcluded note and replace the footnotes clases in order to hide them. We replace the transcluded notes wikilinks -->
+{{ .Content | replaceRE "footnotes" "transcluded-footnotes" | replaceRE "footnote-ref" "transcluded-footnote-ref" | replaceRE "fn" "transcluded-fn" | replaceRE $wikiregex "transcluded-wikilink" | markdownify }}
+</a>
+<!-- We add a hidden wikilink because we want the transcluding page to be shown as a backlink -->
+<p style="display: none;">[[{{ $filename }}]]</p>
+{{ end }}
+</div>
+

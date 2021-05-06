@@ -1,264 +1,458 @@
-/* @override 
-	http://192.168.0.24:1313/css/style.css
-	http://192.168.0.25:1313/css/style.css
-	 */
 
 
+::selection {
+	  background: var(--selected-text-background-color);
+	}
 
+/** 
+	Bear base styles
+	(Retrieved from official app, all credits belong to Bear Team)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline
+}
 
-@import "variables";
-@import "utilities/media-queries";
-@import "utilities/visibility";
-@import "utilities/normalize";
-@import "utilities/reset";
-
-
-
-
-/* @group Base */
 html {
-	font-size: $font-size;
+	line-height: 1
+}
+
+ol, ul {
+	list-style: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle
+}
+
+q, blockquote {
+	quotes: none
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+	content: "";
+	content: none
+}
+
+a img {
+	border: none
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block
+}
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+html {
+	font-size: 87.5%;
+	line-height: 1.57143em
+}
+
+html {
+	font-size: 14px;
 	line-height: 1.6em;
 	-webkit-text-size-adjust: 100%
 }
 
 body {
-	background: $bg;
-	color: $text-color;
+	background: var(--background);
+	// @todo: not working
+	color: var(--text-base-color);
 	text-rendering: optimizeLegibility;
-	font-family: $font-family;
-	font-weight: $font-weight;
-	-webkit-font-smoothing: antialiased;
+	font-family: "AvenirNext-Regular"
 }
 
 a {
-	color: $a-color;
-	text-decoration: $a-text-decoration;
-	display: $a-display;
+	color: var(--link-text-color);
+	text-decoration: none
 }
 
-svg, a svg {
-	fill: $text-color;
-	color: $text-color;
-	stroke: $text-color;
+h1 {
+	font-family: "AvenirNext-Medium";
+	color: var(--title-text-color);
+	font-size: 1.6em;
+	line-height: 1.3em;
+	margin-bottom: .78571em
 }
+
+h2 {
+	font-family: "AvenirNext-Medium";
+	color: var(--title-text-color);
+	font-size: 1.3em;
+	line-height: 1em;
+	margin-bottom: .62857em
+}
+
+h3 {
+	font-family: "AvenirNext-Medium";
+	color: var(--title-text-color);
+	font-size: 1.15em;
+	line-height: 1em;
+	margin-bottom: .47143em
+}
+
+p {
+	margin-bottom: 1.57143em;
+	hyphens: auto
+}
+
 hr {
 	height: 1px;
 	border: 0;
-	background-color: $hr-bg;
+	background-color: #dedede;
 	margin: -1px auto 1.57143em auto
 }
 
-b, strong {
-	font-family: $font-bold;
-	font-weight: bold;
-}
-
-i, em {
-	font-family: $font-italic;
-	font-style: italic;
-}
-
-s, del {
-	color: #878787
-}
-
-blockquote {
-	display: block;
-	margin-bottom: $d4;
-	font-style: italic;
-	font-size: $text-lg;
-	font-weight: lighter;
-	//padding: $d3;
-	border-left: $blockquote-border-size solid $blockquote-left-border-color;
-}
-blockquote p {
-	padding: $d4;
-}
-
-::-moz-selection { /* Code for Firefox */
-  color: red;
-  background: yellow;
-}
-
-::selection {
-  color: $selected-text-color;
-  background: $selected-text-bg;
-}
-
-/* @end */
-
-/* @group Lists */
-ul {
-	list-style: none;
-}
-ol {
-	list-style: none;
-}
-
 ul, ol {
-	margin-bottom: 2rem;
+	margin-bottom: .31429em;
+}
+
+ul ul, ul ol, ol ul, ol ol {
+	margin-bottom: 0px
 }
 
 ol {
 	counter-reset: ol_counter
 }
 
-ol ol, ul ul {
-	margin-left: 1.25714em;
-	margin-bottom: 0px;
-}
-
-ol li {
-	position: relative;
-	//text-indent: -1.45em
-}
-
 ol li:before {
 	content: counter(ol_counter) ".";
 	counter-increment: ol_counter;
-	color: $ol-color;
+	color: var(--accent-text-color);
 	text-align: right;
 	display: inline-block;
 	min-width: 1em;
-	margin-right: 0.5em;
-	font-size: 0.75rem;
-	font-weight: bold;
-	position: absolute;
-	left: -1.25rem;
-	@include to(m) {
-		left: -$d3;
-	}
+	margin-right: 0.5em
 }
 
-ul li {
-	position: relative;
-	/*text-indent: -0.35em*/
-	
+b, strong {
+	font-family: "AvenirNext-Bold"
 }
 
-ul li:before {
-	position: absolute;
-	//content: "\2022";
-	//content: "\26AC";
-	color: $ul-color;
-	width: 1em;
-	display: inline-block;
-	margin-left: -$d5;
+i, em {
+	font-family: "AvenirNext-Italic"
 }
 
-
-
-/* @end */
-
-/* @group Code */
-
-code, pre {
-	font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-}
-pre {
-	-moz-tab-size:    4; /* Firefox 4+ */
-	-o-tab-size:      4; /* Opera 11.5 & 12.1 only */
-	tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */
-	padding: 0.75rem;
-	margin-bottom: 1rem !important;
-	border-radius: $pre-border-radius;
-	font-size: $pre-font-size;
+code {
+	font-family: "Menlo-Regular"
 }
 
-
-// Inline-blocks
-
-h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, li code, p code {
-	background: $inline-code-bg;
-	//border: 1px solid #90cdf4; 
-	border-radius: 0.25rem;
-	font-family: monospace;
-	color: $inline-code-color; 
-	font-size: 0.86rem;
-	padding: 2px 0.25rem;
+.text-overflow-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
 }
 
-
-/* @end */
-
-/* @group Typography */
-h1,h2,h3,h4,h5,h6 {
-	font-family: $headings-font;
-	color:  $headings-color;
-	margin-top: $headings-mt;
-	margin-bottom: $headings-mb;
-	font-weight: bold;
-	
-}
-h1 {
-
-	font-size: 1.75rem;
-	line-height: 1.3em;
-
+.sf_code_string, .sf_code_selector, .sf_code_attr-name, .sf_code_char, .sf_code_builtin, .sf_code_inserted {
+	color: #D33905
 }
 
-h2 {
-
-	font-size: 1.5em;
-	line-height: 1.3em;
-	
+.sf_code_comment, .sf_code_prolog, .sf_code_doctype, .sf_code_cdata {
+	color: #838383
 }
 
-h3 {
-	
-	font-size: 1.25em;
-	line-height: 1em;
-	
+.sf_code_number, .sf_code_boolean {
+	color: #0E73A2
+}
+
+.sf_code_keyword, .sf_code_atrule, .sf_code_rule, .sf_code_attr-value, .sf_code_function, .sf_code_class-name, .sf_code_class, .sf_code_regex, .sf_code_important, .sf_code_variable, .sf_code_interpolation {
+	color: #0E73A2
+}
+
+.sf_code_property, .sf_code_tag, .sf_code_constant, .sf_code_symbol, .sf_code_deleted {
+	color: #1B00CE
+}
+
+.sf_code_macro, .sf_code_entity, .sf_code_operator, .sf_code_url {
+	color: #920448
+}
+
+.note-wrapper {
+	max-width: 46em;
+	margin: 0px auto;
+	padding: 1.57143em 3.14286em
+}
+
+.note-wrapper.spotlight-preview {
+	overflow-x: hidden
+}
+
+u {
+	text-decoration: none;
+	background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%,var(--accent-text-color) 50%);
+	background-repeat: repeat-x;
+	background-size: 2px 2px;
+	background-position: 0 1.05em
+}
+
+s {
+	color: #878787
 }
 
 p {
-	margin-bottom: $p-mb;
-	line-height: $p-lh;
-	hyphens: auto
+	margin-bottom: 0.1em
 }
 
-/* @end */
-
-
-
-
-/* @group Components */
-
-@import "components/syntax";
-@import "components/clipboard";
-@import "components/zettel-links";
-@import "components/navbar";
-@import "components/footnotes";
-@import "components/zoomimg";
-@import "components/sidenav";
-@import "components/torefactor";
-@import "components/search";
-@import "components/backlinks";
-
-
-@mixin stickyFooter {
-  @at-root {
-    body {
-      display        : flex;
-      flex-direction : column;
-      min-height     : 100vh;
-    }
- }
-}
-  
-.main-footer {
-	text-align: center;
-	//background: #f5f5f5 url('../images/bg.jpg') no-repeat left top;
-	//@include stickyFooter();
+hr {
+	margin-bottom: 0.7em;
+	margin-top: 0.7em
 }
 
-/* @end */
-
-/* @group Utilities */
-
-.hidden {
-	display: none;
+ul li {
+	text-indent: -0.35em;
 }
 
-/* @end */
+ul li:before {
+	content: "•";
+	color: var(--accent-text-color);
+	display: inline-block;
+	margin-right: 0.3em
+}
+
+ul ul {
+	margin-left: 1.25714em
+}
+
+ol li {
+	text-indent: -1.45em
+}
+
+ol ol {
+	margin-left: 1.25714em
+}
+
+blockquote {
+	display: block;
+	margin-left: -1em;
+	padding-left: 0.8em;
+	border-left: 0.2em solid var(--accent-text-color)
+}
+
+.todo-list ul {
+	margin-left: 1.88571em
+}
+
+.todo-list li {
+	text-indent: -1.75em
+}
+
+.todo-list li:before {
+	content: "";
+	display: static;
+	margin-right: 0px
+}
+
+.todo-checkbox {
+	text-indent: -1.7em
+}
+
+.todo-checkbox svg {
+	margin-right: 0.3em;
+	position: relative;
+	top: 0.2em
+}
+
+.todo-checkbox svg #check {
+	display: none
+}
+
+.todo-checkbox.todo-checked #check {
+	display: inline
+}
+
+.todo-checkbox.todo-checked+.todo-text {
+	text-decoration: line-through;
+	color: #878787
+}
+
+.code-inline {
+	display: inline;
+	background: white;
+	border: solid 1px #dedede;
+	padding: 0.2em 0.5em;
+	font-size: 0.9em
+}
+
+.code-multiline {
+	display: block;
+	background: white;
+	border: solid 1px #dedede;
+	padding: 0.7em 1em;
+	font-size: 0.9em;
+	overflow-x: auto
+}
+
+.hashtag {
+	display: inline-block;
+	color: var(--hashtag-text-color);
+	background: var(--hashtag-background-color);
+	padding: 0.0em 0.5em;
+	border-radius: 1em;
+	text-indent: 0
+}
+
+.hashtag a {
+	color: var(--hashtag-text-color);
+}
+
+.address a {
+	color: #545454;
+	background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%,#0da35e 50%);
+	background-repeat: repeat-x;
+	background-size: 2px 2px;
+	background-position: 0 1.05em
+}
+
+.address svg {
+	position: relative;
+	top: 0.2em;
+	display: inline-block;
+	margin-right: 0.2em
+}
+
+.color-preview {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	border: solid 1px rgba(0,0,0,0.3);
+	border-radius: 50%;
+	margin-right: 0.1em;
+	position: relative;
+	top: 0.2em;
+	white-space: nowrap
+}
+
+.color-code {
+	margin-right: 0.2em;
+	font-family: "Menlo-Regular";
+	font-size: 0.9em
+}
+
+.color-hash {
+	opacity: 0.4
+}
+
+.ordered-list-number {
+	color: var(--accent-text-color);
+	text-align: right;
+	display: inline-block;
+	min-width: 1em
+}
+
+.arrow svg {
+	position: relative;
+	top: 0.08em;
+	display: inline-block;
+	margin-right: 0.15em;
+	margin-left: 0.15em
+}
+
+.arrow svg #rod {
+	stroke: #545454
+}
+
+.arrow svg #point {
+	fill: #545454
+}
+
+mark {
+	color: inherit;
+	display: inline;
+	padding: 0.2em 0.5em;
+	background-color: var(--highlighter-marker-color)
+}
+
+img {
+	max-width: 100%;
+	height: auto
+}
+
+/** 
+	Custom styles
+*/
+
+// Hugo renders footnotes with <p> tags nested inside <li>
+// This is need to prevent <p> breaking lines
+li > p {
+	display: inline-block;
+	margin-left: 16px;
+}
+
+hr {
+	background: var(--divider-color);
+	margin-top: 2.6em;
+	margin-bottom: 12px;
+}
+
+* + p,
+* + ul,
+* + ol,
+* + blockquote {
+	margin-top: 1.6em;
+}
+
+* + h2,
+* + h3,
+* + h4 {
+	margin-top: 2.8em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	position: relative
+}
+
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before {
+	position: absolute;
+	left: -2.2em;
+	color: var(--heading-indicator);
+	font-size: 12px;
+}
+
+h1:before {
+	content: "H1"
+}
+
+h2:before {
+	content: "H2"
+}
+
+h3:before {
+	content: "H3"
+}
+
+h4:before {
+	content: "H4"
+}
+
+h5:before {
+	content: "H5"
+}
+
+h6:before {
+	content: "H6"
+}
+
+.note-wrapper {
+	margin-top: 2em;
+}

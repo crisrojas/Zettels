@@ -687,7 +687,7 @@
 $(function() {
 	
 	// Automatically add Zoom interaction
-	$('article.content img').attr('data-action', 'zoom');
+	$('article img').attr('data-action', 'zoom');
 
 	// Make captions from Alt tags
 	$('img.captioned').each(function() {
