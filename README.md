@@ -1,20 +1,39 @@
-Online Zettelkästen built with [Hugo](https://gohugo.io/)
+Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](https://crisrojas.com/notes)
+
+### 🚨 Recent changes
+
+- [Bear app](https://bear.app) alike interface (because I'm in ❤️ with 🐻)
+- Abstracted theme variables to their own file. This will allow better customization in the future
+- Added support for spaces inside links
+- Cleaned the project. <s>Temporally removed search feature</s>
+
+### 🚧 toDo
 
 
+- Allow chosing themes from config file
+- Use pretty urls?
+- Append Netlify deploy button to README.md
+- Bear highlight regex: `==highlighted==` && `::highlighted::`
+- Code blocks
+- 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and find a way to localize theme strings.
+- <s>🐻 Bear alike search sidebar</s>
 
-If you like it, please consider supporting and buying it at  [Zettels Hugo Theme](https://gumroad.com/l/zettelkasten)
+### Nice to have
 
-**Installing hugo**
+- Obsidian alike nodes graph
+- Bear nested tags renderer ❤️
 
-See [hugo documentation](https://gohugo.io/getting-started/installing) to get started
+### 💻 Installing
 
-**Install theme**
+`git clone` this repo inside the "themes" folder or submodule it with `git submodule`.
 
-Put this theme inside the "themes" folder.
+```bash
+git submodule add https://github.com/crisrojas/zettels.git themes/zettels
+```
 
-You would want to add some elements inside your config.toml file (uglyURLs, output json, ...) 
+### ⚙️ Config file
 
-Here you have an example of a `config.toml` file that has all you need:
+You would want to add some elements inside your `config.toml` file to have all the features (uglyURLs, output json for search index, ...)
 
 ```toml
 languageCode = "en-EN"
@@ -33,57 +52,28 @@ googleAnalytics = "Your google analytics number"
 unsafe= true
 ```
 
-**Start the server**
+### 🔗 Linking notes
 
-```
-hugo server -D
-```
+Linking through double-brackets syntax. 
 
-### Linking notes
+Ex.: `[[wikilink]]`, where "wikilink" is the filename of the note to be linked.
 
-This theme includes [[wikilinks]] support. 
-
-If you want to link a note, just put it's file name inside two brackets.
-
-That means that for the note:
-
-```
-biology.md
-```
-
-You would link it like this
-
-```
-[[biology]] 
-```
-
-Output:
+I'll maybe add a feature to allow choosing linking from note's title instead of filename.
 
 ```html
+<!-- Input -->
+[[biology]]
+<!-- Regex looks for markdown file... -->
+biology.md
+<!-- Output html -->
 <a href="biology.html">biology</a>
 ```
 
-Make sure your filenames contain not spaces as this isn't supported by the regex yet.
+Spaces in wikilinks are supported: `[[spaced link]]` outputs `<a href="spaced-link.html">spaced link</a>`
 
-**DO**
+### 🔙 Backlinks
 
-```
-biologia-celular.md ✅
-[[biologia-celular]] ✅ 
-```
-
-**DON'T**
-
-```
-biología celular.md ⛔️
-[[biología celular]] ⛔️
-```
-
-**Your markdown notes go inside the `content` folder and need to comply with a valid yaml syntax if you're using metadata**
-
-### Backlinks
-
-Backlinks are supported right out the box. To use them properly you would want to give a title to each of your notes in the yaml header,  like so:
+Title of referencing note is need for backlinking, so make sure you set a title for all your notes in the yaml metadata.
 
 ```
 ---
@@ -92,5 +82,3 @@ title: My awesome note
 
 Hi! This is the content of my awesome note.
 ```
-
-This way the note can be referenced in the backlinks section since the backlink function will look for the `title` key.

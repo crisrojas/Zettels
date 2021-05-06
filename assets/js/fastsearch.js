@@ -13,7 +13,7 @@ var resultsAvailable = false; // Did we get any search results?
 //
 document.addEventListener('keydown', function(event) {
 
-  // CMD-/ to show / hide Search
+  // CMD-K to show / hide Search
   if (event.metaKey && event.which === 75) {
       // Load json search index if first time invoking search
       // Means we don't load json unless searches are going to happen; keep user payload small unless needed

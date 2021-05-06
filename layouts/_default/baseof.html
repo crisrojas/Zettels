@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ .Content | truncate 300 }}">{{ with .OutputFormats.Get "rss" -}}
+	
+	{{ printf `
+	<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+	
+	{{- template "_internal/opengraph.html" . -}}
+	{{- template "_internal/twitter_cards.html" . -}}
+	
+	{{- $title := ( .Title ) -}}
+	{{- $siteTitle := ( .Site.Title ) -}}
+	
+	{{- if .IsHome -}}
+		<title>{{ $siteTitle }}</title>
+		{{- else -}}
+		<title>{{ $title }} - {{ $siteTitle }}</title>
+	{{- end -}}
+	
+	{{ $theme := .Param "theme" }}
+	{{ $themeRoute := printf "%s%s%s" "css/themes/" $theme ".css" }}
+	
+	{{ $themeVariables := resources.Get $themeRoute  }}
+	{{ $styles := resources.Get "css/style.scss" | toCSS }}
+	{{ $main := slice $themeVariables $styles | resources.Concat "css/main.css" | minify | fingerprint }}
+	
+	
+	<link rel="stylesheet" href="{{ $main.Permalink }}" />
+	
+	{{ if not .Site.IsServer }}
+
+	{{ template "_internal/google_analytics.html" . }}
+
+{{ end }}
+
+</head>
+
+<body>
+
+	{{ partialCached "search.html" . }}
+	{{ partial "toolbar.html" . }}
+	
+	<main id="main">
+		<div class="note-wrapper">
+			{{ block "main" . }}{{ end }}
+		</div>
+	</main>
+	
+<script type="text/javascript">
+(function() {
+
+var doc_ols = document.getElementsByTagName("ol");
+
+for ( i=0; i<doc_ols.length; i++) {
+
+var ol_start = doc_ols[i].getAttribute("start") - 1;
+doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
+
+}
+
+})();
+</script>
+
+</body>
+</html>
