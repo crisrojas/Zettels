@@ -1,5 +1,5 @@
 {{- $.Scratch.Add "index" slice -}}
-{{- range where .Site.RegularPages "Type" "not in"  (slice "page" "json") -}}
+{{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
 
     {{- if and (isset .Params "private") (eq .Params.private true) -}}
     {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" "🔐 Private note" ) -}}

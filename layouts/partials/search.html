@@ -1,0 +1,228 @@
+<!-- 
+	@niceth: Nice to have
+	- Thumbnails of notes images inside search (regex out from .Content variable)
+	- Caching of index.json to load it once
+ -->
+<script>
+var firstRun = true;
+function loadIndex() {
+	  fetchJSON(function(response) {
+	
+		const notes = response;
+		const search_results = document.querySelector('#search-results');
+		
+		notes.forEach(note => {
+			const title = '<h4>'+ note.title + '</h4>';
+			const summary = '<div>' + note.summary + '</div>';
+			const permalink = note.permalink
+			const list_content = '<li><a href="' + permalink + '" tabindex="0">' + title + summary + '</a></li>'
+			const child = document.createElement("li");
+			child.innerHTML = list_content;
+			search_results.append(child)
+		});
+		
+	  });
+	}
+	
+	
+function fetchJSON(callback) {
+	  
+	const requestURL = '/index.json';
+	const request = new XMLHttpRequest();
+	request.open('GET', requestURL, true);
+	request.responseType = 'json';
+	request.onreadystatechange = function() {
+	  if (request.readyState === 4 && request.status === 200) {
+		  callback(request.response);
+	  }
+	};
+	request.send(null);
+}
+
+function performSearch() {
+
+	  var input, filter, ul, li, a, i, txtValue;
+	  input = document.getElementById('search-input');
+	  filter = input.value.toUpperCase();
+	  ul = document.getElementById("search-results");
+	  li = ul.getElementsByTagName('li');
+	
+	  for (i = 0; i < li.length; i++) {
+		a = li[i].getElementsByTagName("a")[0];
+		txtValue = a.textContent || a.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  li[i].style.display = "";
+		} else {
+		  li[i].style.display = "none";
+		}
+	  }
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(evt) {
+	
+	if (evt.metaKey && evt.which === 75) {
+		handleNavVisibility()
+	}
+	
+	if (evt.key === "Escape" || evt.key === "Esc" | evt.keyCode === 27) {
+		hideNav()
+	}
+	
+});
+
+var nav_is_visible = false;
+function handleNavVisibility() {
+	if (!nav_is_visible) {
+		showNav();
+
+	} else {
+		hideNav()
+	}
+}
+
+function showNav() {
+	
+	if (firstRun) {
+		loadIndex();
+		firstRun = false;
+	}
+	
+	document.getElementById("search").style.width = "300px";
+	document.getElementById("search").style.opacity = 1;
+	document.getElementById("search-header").style.opacity = 1;
+	document.getElementById("main").style.marginLeft = "300px";
+	document.getElementById("search-header").style.width = "299px";
+	document.getElementById("search-input").focus();
+	
+	nav_is_visible = true;
+}
+
+function hideNav() {
+	document.getElementById("search").style.width = "0";
+	document.getElementById("search-header").style.width = "0";
+	document.getElementById("search").style.opacity = 0;
+	document.getElementById("search-header").style.opacity = 0;
+	document.getElementById("main").style.marginLeft= "0";
+	
+	nav_is_visible = false;
+}
+</script>
+
+<style>
+search-menu {
+	display: block;
+}
+
+#search { 
+	height: 100%;
+	width: 0;
+	position: fixed;
+	background: var(--background);
+	z-index: 1;
+	top: 0;
+	left: 0;
+	border-right: 1px solid var(--separator-color);
+	overflow-x: hidden;
+	opacity: 0;
+	
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}      
+	
+#search::-webkit-scrollbar { display: none; }
+
+#search-header {
+	padding: 12px;
+	position: fixed;
+	padding-left: 12px;
+	padding-right: 12px;
+	background: var(--background);
+	width: 250px;
+	opacity: 1;
+	height: 50px;
+	z-index: 2;
+	border-bottom: 1px solid var(--separator-color);
+}
+
+#search .input-container {
+	position: relative
+}
+
+#search-input { 
+  width: 100%;
+  height: 24px;
+  border: 1px solid var(--separator-color);
+  border-radius: 4px;
+  padding-left: 24px;
+  background-color: white;
+  display: inline-block;
+}
+
+#search-header .input-container .search-icon {
+	position: absolute;
+	top: 6px;
+	left: 8px;
+	fill: darkGray;
+}
+
+#search-results img {
+	width: 122px;
+	height: 76px;
+	border: 1px solid var(--separator-color);
+	object-fit: cover;
+}
+
+#search-results { margin-top: 50px; }
+
+#search-results a {
+	width: 100%;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	display: inline-block;
+	
+	color: var(--text-base-color);
+	border-bottom: 1px solid var(--separator-color);
+	border-left: 5px solid var(--background);
+
+}
+
+#search-results a:first-child:hover, a:first-child:focus { 
+	outline: 0; 
+	background-color: var(--note-table-cell-selected-color);
+	border-left: 5px solid var(--note-table-cell-ribbon-color) !important;
+}
+
+// Reseting default styles inside search component scope
+#search-results li { text-indent: 0; }
+#search-results li:before,
+#search-results h1:before,
+#search-results h2:before,
+#search-results h3:before,
+#search-results h4:before,
+#search-results h5:before,
+#search-results h6:before {
+	content: "";
+	visibility: hidden;
+	display: none;
+}
+
+
+</style>	
+
+
+<search-menu id="search">
+	   <header id="search-header">
+		 <div class="input-container">
+			 <svg aria-hidden="true" style="" class="search-icon" width="12" height="12" viewBox="0 0 18 18">
+			<path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z">
+			</path>
+			 </svg>
+			 <input type="search" autocomplete="off" id="search-input" onkeyup="performSearch()" tabindex="0" placeholder="Search note">
+		 </div>
+	   </header>
+	   <ul id="search-results">
+	   </ul>
+</search-menu>
