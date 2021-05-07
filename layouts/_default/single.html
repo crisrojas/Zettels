@@ -2,7 +2,8 @@
 
 	<h1>{{ .Title }}</h1>
 
-		{{- if and (isset .Params "privado") (eq .Params.privado true) -}}
+
+		{{- if and (isset .Params "private") (eq .Params.private true) -}}
 			{{ if .Site.IsServer }}
 				<p>&#128274;</p>
 				{{ partial "content.html" . }}
@@ -13,6 +14,6 @@
 			{{ partial "content.html" . }}
 		{{- end -}}
 
-{{ partial "backlinks.html" . }}
+{{ partialCached "backlinks.html" . }}
 
 {{ end }}

@@ -13,7 +13,7 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 <h3>Referenciada en:</h3>
 
 <ul>
-{{- range .Site.RegularPages -}}
+{{- range where .Site.RegularPages "Type" "not in"  (slice "page" "html") -}}
 	{{ if (findRE $wikilink .Content) }}
 		{{ $.Scratch.Add "backlinks" (dict .Permalink .Title) }}
 		<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
@@ -26,25 +26,3 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 	<li>No hay referencias</li>
 {{ end }}
 </ul>
-
-
-
-<!-- 
-{{/*
-{{ if gt (len $backlinks) 0}}
-
-	<h3>Referenciada en</h3>
-<ul>
-	{{ range $backlinks }}
-		
-		{{ range $permalink, $title := . }}
-			<li><a href="{{ $permalink }}">{{ $title }}</a></li>
-			
-		{{ end }}
-	{{ end }}
-</ul>
-{{ else }}
-{{ end }}
-*/}} 
--->
-

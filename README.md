@@ -5,15 +5,18 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - [Bear app](https://bear.app) alike interface (because I'm in ❤️ with 🐻)
 - Abstracted theme variables to their own file. This will allow better customization in the future
 - Added support for spaces inside links
-- Cleaned the project. Temporally removed search feature.
+- Cleaned the project. <s>Temporally removed search feature</s>
 
 ### 🚧 toDo
 
-- 🐻 Bear alike search sidebar
-- Allow customization from config file
+
+- Allow chosing themes from config file
 - Use pretty urls?
 - Append Netlify deploy button to README.md
-- Change "privado" param key to "private" (english 😅)
+- Bear highlight regex: `==highlighted==` && `::highlighted::`
+- Code blocks
+- 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and find a way to localize theme strings.
+- <s>🐻 Bear alike search sidebar</s>
 
 ### Nice to have
 
@@ -23,6 +26,7 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 ### 💻 Installing
 
 `git clone` this repo inside the "themes" folder or submodule it with `git submodule`.
+
 
 ```bash
 git submodule add https://github.com/crisrojas/zettels.git themes/zettels

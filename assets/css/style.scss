@@ -1,4 +1,27 @@
 
+input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	color: inherit;
+	font-size: 100%;
+	vertical-align: baseline	
+}
+
+*:focus {
+	outline: none;
+}
+	
+textarea,
+input[type="search"],
+input[type="text"],
+input[type="button"],
+input[type="submit"] {
+	 -webkit-appearance: none;
+	 border-radius: 0;
+}
+// @todo: class
 
 ::selection {
 	  background: var(--selected-text-background-color);
@@ -48,7 +71,6 @@ q:before, q:after, blockquote:before, blockquote:after {
 a img {
 	border: none
 }
-
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
 	display: block
 }
@@ -400,6 +422,14 @@ hr {
 	margin-bottom: 12px;
 }
 
+
+h4 {
+	font-family: "AvenirNext-Medium";
+	color: var(--title-text-color);
+	font-size: 1.05em;
+	margin-bottom: .47143em
+}
+
 * + p,
 * + ul,
 * + ol,
@@ -414,7 +444,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	position: relative
+	position: relative;
 }
 
 h1:before,

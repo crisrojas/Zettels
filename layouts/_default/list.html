@@ -2,9 +2,10 @@
 
 <h1>{{ .Title }}</h1>
 
-	{{- if and (isset .Params "privado") (eq .Params.privado true) -}}
+
+	{{- if and (isset .Params "private") (eq .Params.private true) -}}
 		{{ if .Site.IsServer }}
-			<p>&#128274;</p>
+			<p>&#128274; Nota privada</p>
 			{{ partial "content.html" . }}
 		{{ else }}
 			<p>&#128274; Nota privada</p>

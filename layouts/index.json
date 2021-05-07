@@ -1,5 +1,10 @@
 {{- $.Scratch.Add "index" slice -}}
-{{- range .Site.RegularPages -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink) -}}
+{{- range where .Site.RegularPages "Type" "not in"  (slice "page" "json") -}}
+
+    {{- if and (isset .Params "private") (eq .Params.private true) -}}
+    {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" "🔐 Private note" ) -}}
+    {{- else -}}
+    {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" (.Summary | truncate 70) ) -}}
+    {{- end -}}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
