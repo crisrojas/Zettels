@@ -4,7 +4,7 @@
 {{ $lastBracket := "\\]\\]" }}
 
 <!-- @todo: does regex work with many wikilinks inside of same paragraph? --> 
-{{ $wikiregex := "\\[\\[([^/]+)\\]\\]" }}
+{{ $wikiregex := "\\[\\[([^/]+?)\\]\\]" }}
 
 {{ $subgroup1 := .Content | findRE $wikiregex }}
 
