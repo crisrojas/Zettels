@@ -2,6 +2,7 @@
 	@niceth: Nice to have
 	- Thumbnails of notes images inside search (regex out from .Content variable)
 	- Caching of index.json to load it once
+	- ctr + k instead of cmd ?
  -->
 <script>
 var firstRun = true;
@@ -61,7 +62,7 @@ function performSearch() {
 // Keyboard shortcuts
 document.addEventListener('keydown', function(evt) {
 	
-	if (evt.metaKey && evt.which === 75) {
+	if (evt.metaKey && evt.which === 75 || evt.ctrlKey && evt.which === 75) {
 		handleNavVisibility()
 	}
 	
