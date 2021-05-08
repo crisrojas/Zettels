@@ -33,11 +33,14 @@
 	
 	<link rel="stylesheet" href="{{ $main.Permalink }}" />
 	
+	
+	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
+	{{ $search := resources.Get "js/search.js" }}
+	<script src="{{ $turbolinks.Permalink }}" type="text/javascript"></script>
+	<script src="{{ $search.Permalink }}"></script>
 	{{ if not .Site.IsServer }}
-
-	{{ template "_internal/google_analytics.html" . }}
-
-{{ end }}
+		{{ template "_internal/google_analytics.html" . }}
+	{{ end }}
 
 </head>
 
@@ -52,7 +55,7 @@
 		</div>
 	</main>
 	
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 (function() {
 
 var doc_ols = document.getElementsByTagName("ol");
@@ -65,7 +68,7 @@ doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
 }
 
 })();
-</script>
+</script> -->
 
 </body>
 </html>
