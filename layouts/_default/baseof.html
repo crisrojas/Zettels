@@ -55,20 +55,27 @@
 		</div>
 	</main>
 	
-<!-- <script type="text/javascript">
-(function() {
+<script type="text/javascript">
 
-var doc_ols = document.getElementsByTagName("ol");
-
-for ( i=0; i<doc_ols.length; i++) {
-
-var ol_start = doc_ols[i].getAttribute("start") - 1;
-doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
-
+var links=document.getElementsByTagName('a'), hrefs = [];
+for (var i = 0; i<links.length; i++)
+{   
+	hrefs.push(links[i].href);
 }
 
-})();
-</script> -->
+// (function() {
+// 
+// var doc_ols = document.getElementsByTagName("ol");
+// 
+// for ( i=0; i<doc_ols.length; i++) {
+// 
+// var ol_start = doc_ols[i].getAttribute("start") - 1;
+// doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
+// 
+// }
+// 
+// })();
+</script>
 
 </body>
 </html>

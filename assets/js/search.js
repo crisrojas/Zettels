@@ -3,7 +3,15 @@ loadIndex()
 
 document.addEventListener("turbolinks:load", function() {
 	setNoteWrapperState()
-	selectedNoteOnIndex()
+	
+	window.onload = function() {
+		const results = document.querySelectorAll('#search-results')
+		results.forEach(node => {
+			const link = node.getElementsByTagName('a')
+			// link.style.display = "none";
+		})
+	}
+
 })
 
 function loadIndex() {
@@ -11,12 +19,19 @@ function loadIndex() {
 	
 		const notes = response;
 		const search_results = document.querySelector('#search-results');
-		
+		const current_note = window.location.href;
 		notes.forEach(note => {
 			const title = '<h4>'+ note.title + '</h4>';
 			const summary = '<div>' + note.summary + '</div>';
-			const permalink = note.permalink
-			const list_content = '<li><a href="' + permalink + '" tabindex="0">' + title + summary + '</a></li>'
+			// @todo: cleaner way of detecting this (http, https)
+			const permalink = "http:" + note.permalink
+			var list_content;
+			if (current_note === permalink) {
+				list_content = '<li id="test"><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
+			} else {
+				list_content = '<li id="test"><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + '</a></li>'
+			}
+			
 			const child = document.createElement("li");
 			child.innerHTML = list_content;
 			search_results.append(child)
@@ -47,7 +62,7 @@ function performSearch() {
 	  filter = input.value.toUpperCase();
 	  ul = document.getElementById("search-results");
 	  li = ul.getElementsByTagName('li');
-	
+	  
 	  for (i = 0; i < li.length; i++) {
 		a = li[i].getElementsByTagName("a")[0];
 		txtValue = a.textContent || a.innerText;
@@ -124,29 +139,4 @@ function pushNoteWrapper() {
 
 function pullNoteWrapper() {
 	document.getElementById("main").style.marginLeft = "0";
-}
-
-function selectedNoteOnIndex() {
-
-	const current_note = window.location.href;
-	const search_results = document.querySelector('#search-results');
-	
-	console.log("@todo: select note on index");
-	
-	var list = search_results.getElementsByTagName("a");
-	
-	// for (var i = 0; i < list.length; i++) {
-	// 	console.log(list[i].id); //second console output
-	// };
-	
-// 	var i = 0
-// 	for(i;i<listed_items.length;i++){
-// 
-// 		var note_link = listed_items[i].href.split("/");
-// 		console.log(note_link)
-// 		if(note_link[note_link.length-1] == currentPage) {
-// 		listed_items[i].className = "selected";
-// 		
-// 		}
-// 	}
 }
