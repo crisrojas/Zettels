@@ -14,7 +14,14 @@
 	{{- template "_internal/opengraph.html" . -}}
 	{{- template "_internal/twitter_cards.html" . -}}
 	
-	{{- $title := ( .Title ) -}}
+	{{ $.Scratch.Set "title" "" }}
+	{{ if eq (.Param "bear") true }}
+		{{ $.Scratch.Set "title" .File.BaseFileName }}
+	{{ else }}
+		{{ $.Scratch.Set "title" .Title }}
+	{{ end }}
+	
+	{{ $title := $.Scratch.Get "title" }}
 	{{- $siteTitle := ( .Site.Title ) -}}
 	
 	{{- if .IsHome -}}
