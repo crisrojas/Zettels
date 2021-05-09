@@ -16,7 +16,7 @@ jQuery.fn.highlight = function(pat) {
 			if (pos >= 0) {
 
 				var spannode       = document.createElement('span');
-				spannode.className = 'highlight';
+				spannode.className = 'highlighted';
 				var middlebit      = node.splitText(pos);
 				var endbit         = middlebit.splitText(pat.length);
 				var middleclone    = middlebit.cloneNode(true);
@@ -83,7 +83,7 @@ jQuery.fn.removeHighlight = function() {
 
 	}
 
-	return this.find("span.highlight").each(function() {
+	return this.find("span.highlighted").each(function() {
 
 		var thisParent = this.parentNode;
 		thisParent.replaceChild(this.firstChild, this);
@@ -161,11 +161,12 @@ function loadIndex() {
 			// @todo: cleaner way of detecting this (http, https)
 			// const permalink = "http:" + note.permalink
 			const permalink = note.permalink
+			const tags = '<span style="display:none">' + note.tags + '</span>'
 			var list_content;
 			if (current_note === permalink) {
 				list_content = '<li><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
 			} else {
-				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + '</a></li>'
+				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + tags + '</a></li>'
 			}
 			
 			const child = document.createElement("li");
@@ -191,10 +192,41 @@ function fetchJSON(callback) {
 	request.send(null);
 }
 
-function performSearch() {
+function focusTag(a) {
+	showNav()
+	performSearchWith(a.innerText)
+	
+}
+
+function performSearchWith(query) {
+	
+	// document.getElementById('search-input').value = query
+	
+	var filter, ul, li, a, i, txtValue;
 	  
-	  // var body = document.getElementsByClassName('note-wrapper')
-	  // var content = body.innerHTML;
+	  filter = query.toLowerCase();
+	  filter  = filter.replace('/[.*+?^${}()|[\]\\]/g', '\\$&');
+	  
+	  var re = new RegExp(filter, 'g');
+	  
+	  ul = document.getElementById("search-results");
+	  li = ul.getElementsByTagName('li');
+
+	  for (i = 0; i < li.length; i++) {
+		a = li[i].getElementsByTagName("a")[0];
+		
+		txtValue = a.textContent || a.innerText;
+		if (txtValue.toLowerCase().indexOf(filter) > -1) {
+
+		  li[i].style.display = "block";
+		  
+		} else {
+		  li[i].style.display = "none";
+		}
+	  }
+}
+
+function performSearch() {
 	  
 	  var input, filter, ul, li, a, i, txtValue;
 	  input = document.getElementById('search-input');
@@ -206,29 +238,14 @@ function performSearch() {
 	  
 	  ul = document.getElementById("search-results");
 	  li = ul.getElementsByTagName('li');
-	  
-	  
-	 
-		
-	  
+
 	  for (i = 0; i < li.length; i++) {
 		a = li[i].getElementsByTagName("a")[0];
 		
 		txtValue = a.textContent || a.innerText;
 		if (txtValue.toLowerCase().indexOf(filter) > -1) {
-		  
-		  var content = li[i].innerHTML;
-		  // console.log(content);
-		  if (filter.length > 0) {
-		
-		  }
-		  
-		  
+
 		  li[i].style.display = "block";
-		 
-		  // if (filter.length > 0) {
-			//   li[i].innerHTML = li[i].innerHTML.replace(re, `<ins>$&</ins>`)
-		  // }
 		  
 		} else {
 		  li[i].style.display = "none";
@@ -240,6 +257,7 @@ function performSearch() {
 document.addEventListener('keydown', function(evt) {
 	
 	if (evt.metaKey && evt.which === 75 || evt.ctrlKey && evt.which === 75) {
+		document.getElementById("search-input").focus();
 		handleNavVisibility()
 	}
 	
@@ -265,7 +283,6 @@ function showNav() {
 	document.getElementById("search").style.opacity = 1;
 	document.getElementById("search-header").style.opacity = 1;
 	document.getElementById("search-header").style.width = "299px";
-	document.getElementById("search-input").focus();
 	pushNoteWrapper()
 	
 	nav_is_visible = true;

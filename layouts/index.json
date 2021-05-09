@@ -1,5 +1,11 @@
+{{ $tagregex3 := "#([^\\s^#][^#]*[^\\s^#])#\\n" }}
+{{ $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#\\s" }}
+{{ $tagregex := "#([^#\\s\\,]+)" }}
+
 {{- $.Scratch.Add "index" slice -}}
 {{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
+    
+    {{- $.Scratch.Add "tags" slice -}}
     
     {{ $.Scratch.Set "title" "" }}
     {{ if eq (.Param "bear") true }}
@@ -17,7 +23,13 @@
     {{- end -}}
     {{ $summary := $.Scratch.Get "summary" }}
     
-    {{- $.Scratch.Add "index" (dict "title" $title "permalink" .Permalink "summary" $summary ) -}}
+    {{ $tags3 := .RawContent | findRE $tagregex3 }}
+    {{ $tags2 := .RawContent | findRE $tagregex2 }}
+    {{ $tags := .RawContent | findRE $tagregex }}
+
+    {{ $allTags := (slice $tags3 $tags2 $tags) }}
+    
+    {{- $.Scratch.Add "index" (dict "title" $title "permalink" .Permalink "summary" $summary "tags" $allTags ) -}}
     
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

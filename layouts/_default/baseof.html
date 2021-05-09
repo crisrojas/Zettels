@@ -43,8 +43,12 @@
 	
 	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
 	{{ $search := resources.Get "js/search.js" }}
-	<script src="{{ $turbolinks.Permalink }}" type="text/javascript"></script>
-	<script src="{{ $search.Permalink }}"></script>
+	{{ $focustag := resources.Get "js/focus-tag.js" }}
+	
+	{{ $scripts := slice $turbolinks $search | resources.Concat "js/main.js" | minify | fingerprint }}
+	
+	<script src="{{ $scripts.Permalink }}" type="text/javascript"></script>
+	
 	{{ if not .Site.IsServer }}
 		{{ template "_internal/google_analytics.html" . }}
 	{{ end }}
@@ -64,6 +68,7 @@
 	</main>
 	
 <script type="text/javascript">
+
 // (function() {
 // 
 // var doc_ols = document.getElementsByTagName("ol");

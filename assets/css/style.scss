@@ -487,8 +487,17 @@ h6:before {
 	margin-top: 2em;
 }
 
-// Highlight
-
-.highlight {
+.highlighted {
 	background: var(--selected-text-background-color);
+}
+
+.hashtag {
+	cursor: pointer;
+	margin-bottom: 4px;
+	position: relative;
+	margin-right: 2px;
+}
+
+.hashtag:before {
+	content: "#"
 }
