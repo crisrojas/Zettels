@@ -12,6 +12,7 @@ fix regex for cases:
 antes-de-pensar-en-crear-cursos-he-de-cultivar-mis-notas-evergreen.html
 Categorizamos la información para facilitar el aprendizaje
 tu-cuerpo-es-tu-gimnasio.html
+Más vale pájaro en mano que ciento volando
  -->
 
 <!-- Tags containing spaces ended with a newline -->
@@ -51,5 +52,10 @@ tu-cuerpo-es-tu-gimnasio.html
 {{ $content := $content | replaceRE $tagregex "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
 {{ $content := $content | replaceRE "->" "→" }}
+
+{{ $content := $content | replaceRE "::([^/]+?)::" "<mark>$1</mark>" }}
+
+{{ $content := $content | replaceRE "==([^/]+?)==" "<mark>$1</mark>" }}
+
 {{ $content | markdownify }}
 

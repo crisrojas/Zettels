@@ -13,10 +13,12 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - Allow chosing themes from config file
 - Use pretty urls?
 - Append Netlify deploy button to README.md
-- Bear highlight regex: `==highlighted==` && `::highlighted::`
+- <s>Bear highlight regex: `==highlighted==` && `::highlighted::`</s>
 - Code blocks
 - 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and find a way to localize theme strings.
 - <s>🐻 Bear alike search sidebar</s>
+- Integrate zoom.js
+- Thumbnails on search component
 
 ### Nice to have
 
