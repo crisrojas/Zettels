@@ -19,8 +19,8 @@ search-menu {
 	top: 0;
 	left: 0;
 	border-right: 1px solid var(--separator-color);
-	/* overflow-x: hidden; */
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	opacity: 0;
 	
 	-ms-overflow-style: none;  /* IE and Edge */
@@ -90,14 +90,14 @@ search-menu {
 	
 	color: var(--text-base-color);
 	border-bottom: 1px solid var(--separator-color);
-	border-left: 5px solid var(--background);
+	border-left: 6px solid var(--background);
 
 }
 
 #search-results a:first-child:hover, a:first-child:focus, .selected { 
 	outline: 0; 
 	background-color: var(--note-table-cell-selected-color);
-	border-left: 5px solid var(--note-table-cell-ribbon-color) !important;
+	border-left: 6px solid var(--note-table-cell-ribbon-color) !important;
 }
 
 // Reseting default styles inside search component scope
@@ -113,8 +113,6 @@ search-menu {
 	visibility: hidden;
 	display: none;
 }
-
-
 </style>	
 
 
@@ -126,10 +124,13 @@ search-menu {
 			</path>
 			 </svg>
 			 <input type="search" autocomplete="off" id="search-input" onkeyup="performSearch()" tabindex="0" placeholder="Search note">
+			 
+			 <input type="hidden" id="hid_search">
+			 
 		 </div>
 	   </header>
 	   
-	   <ul id="search-results" onscroll="myFunction()">
+	   <ul id="search-results">
 			 
 		</ul>
 		   

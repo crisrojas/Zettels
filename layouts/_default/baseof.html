@@ -39,7 +39,7 @@
 	
 	
 	<link rel="stylesheet" href="{{ $main.Permalink }}" />
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
 	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
 	{{ $search := resources.Get "js/search.js" }}
@@ -64,13 +64,6 @@
 	</main>
 	
 <script type="text/javascript">
-
-var links=document.getElementsByTagName('a'), hrefs = [];
-for (var i = 0; i<links.length; i++)
-{   
-	hrefs.push(links[i].href);
-}
-
 // (function() {
 // 
 // var doc_ols = document.getElementsByTagName("ol");

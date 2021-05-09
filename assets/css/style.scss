@@ -486,3 +486,9 @@ h6:before {
 .note-wrapper {
 	margin-top: 2em;
 }
+
+// Highlight
+
+.highlight {
+	background: var(--selected-text-background-color);
+}
