@@ -15,8 +15,17 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 <ul>
 {{- range where .Site.RegularPages "Type" "not in"  (slice "page" "html") -}}
 	{{ if (findRE $wikilink .Content) }}
-		{{ $.Scratch.Add "backlinks" (dict .Permalink .Title) }}
-		<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+	
+		{{ $.Scratch.Set "title" "" }}
+		{{ if eq (.Param "bear") true }}
+			{{ $.Scratch.Set "title" .File.BaseFileName }}
+		{{ else }}
+			{{ $.Scratch.Set "title" .Title }}
+		{{ end }}
+		{{ $title := $.Scratch.Get "title" }}
+		
+		{{ $.Scratch.Add "backlinks" (dict .Permalink $title) }}
+		<li><a href="{{ .Permalink }}">{{ $title }}</a></li>
 	{{ end }}
 {{- end -}}
 

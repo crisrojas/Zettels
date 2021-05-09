@@ -24,12 +24,13 @@ function loadIndex() {
 			const title = '<h4>'+ note.title + '</h4>';
 			const summary = '<div>' + note.summary + '</div>';
 			// @todo: cleaner way of detecting this (http, https)
-			const permalink = "http:" + note.permalink
+			// const permalink = "http:" + note.permalink
+			const permalink = note.permalink
 			var list_content;
 			if (current_note === permalink) {
-				list_content = '<li id="test"><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
+				list_content = '<li><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
 			} else {
-				list_content = '<li id="test"><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + '</a></li>'
+				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + '</a></li>'
 			}
 			
 			const child = document.createElement("li");

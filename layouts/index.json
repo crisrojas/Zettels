@@ -1,10 +1,23 @@
 {{- $.Scratch.Add "index" slice -}}
 {{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
-
+    
+    {{ $.Scratch.Set "title" "" }}
+    {{ if eq (.Param "bear") true }}
+        {{ $.Scratch.Set "title" .File.BaseFileName }}
+    {{ else }}
+        {{ $.Scratch.Set "title" .Title }}
+    {{ end }}
+    {{ $title := $.Scratch.Get "title" }}
+    
+    {{ $.Scratch.Set "summary" "" }}
     {{- if and (isset .Params "private") (eq .Params.private true) -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" "🔐 Private note" ) -}}
+        {{ $.Scratch.Set "summary" "🔐 Private note" }}
     {{- else -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" (.Summary | truncate 70) ) -}}
+        {{ $.Scratch.Set "summary" (.Summary | truncate 70) }}
     {{- end -}}
+    {{ $summary := $.Scratch.Get "summary" }}
+    
+    {{- $.Scratch.Add "index" (dict "title" $title "permalink" .Permalink "summary" $summary ) -}}
+    
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

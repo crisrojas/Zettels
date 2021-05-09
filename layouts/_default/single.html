@@ -1,8 +1,17 @@
 {{ define "main" }}
 
+
+{{ $.Scratch.Set "title" "" }}
+{{ if ne (.Param "bear") true }}
 	<h1>{{ .Title }}</h1>
-
-
+	{{$.Scratch.Set "title" .Title }}
+{{ else }}
+	{{ $.Scratch.Set "title" .File.BaseFileName }}
+{{ end }}
+{{ $title := $.Scratch.Get "title" }}
+		<!-- 
+			Protects content if the note has the "private" tag on the YAML
+		-->
 		{{- if and (isset .Params "private") (eq .Params.private true) -}}
 			{{ if .Site.IsServer }}
 				<p>&#128274;</p>
@@ -11,7 +20,30 @@
 				<p>&#128274; Nota privada</p>
 			{{ end }}
 		{{- else -}}
-			{{ partial "content.html" . }}
+		<!-- 
+			If the note hasn't the "private" tag, but has the "private" word on its content, we want to protect the content.
+			
+			This is because when using bear mode, we don't use yaml.
+			
+			@todo: 
+			- find a better way of doing this (this is false-positive prone)
+			- code refactor
+			- translate keyword from spanish to english
+	    -->
+			{{ $private := .Content | findRE "privado" }}
+			{{ if le (len $private) 0 }}
+				{{ partial "content.html" . }}
+			{{ else }}
+				{{ if.Site.IsServer }}
+				<p>&#128274;</p>
+				{{ partial "content.html" .}}
+				{{ else }}
+				<h1>{{ $title }}</h1>
+				<p>&#128274; Nota privada</p>
+				{{ end }}
+			{{ end }}
+		
+			
 		{{- end -}}
 
 {{ partial "backlinks.html" . }}
