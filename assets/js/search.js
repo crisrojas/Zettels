@@ -1,16 +1,23 @@
-// var firstRun = true;
 loadIndex()
 
+var scrollTop = 0
+document.addEventListener("turbolinks:before-render", function() {
+  var search_index = document.getElementById("search-results");
+  var y = search_index.scrollTop;
+  scrollTop = y
+})
+
+document.addEventListener("turbolinks:render", function() {
+	var search_index = document.getElementById("search-results");
+	search_index.scrollTop = scrollTop
+})
+	
 document.addEventListener("turbolinks:load", function() {
 	setNoteWrapperState()
 	
-	window.onload = function() {
-		const results = document.querySelectorAll('#search-results')
-		results.forEach(node => {
-			const link = node.getElementsByTagName('a')
-			// link.style.display = "none";
-		})
-	}
+	// window.onload = function() {
+	// // @todo: find current note and select it
+	// }
 
 })
 
@@ -18,7 +25,7 @@ function loadIndex() {
 	  fetchJSON(function(response) {
 	
 		const notes = response;
-		const search_results = document.querySelector('#search-results');
+		const search_results = document.getElementById('search-results');
 		const current_note = window.location.href;
 		notes.forEach(note => {
 			const title = '<h4>'+ note.title + '</h4>';
@@ -99,11 +106,6 @@ function handleNavVisibility() {
 }
 
 function showNav() {
-	
-	// if (firstRun) {
-	// 	loadIndex();
-	// 	firstRun = false;
-	// }
 	
 	document.getElementById("search").style.width = "300px";
 	document.getElementById("search").style.opacity = 1;

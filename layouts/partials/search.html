@@ -19,7 +19,8 @@ search-menu {
 	top: 0;
 	left: 0;
 	border-right: 1px solid var(--separator-color);
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
+	overflow: auto;
 	opacity: 0;
 	
 	-ms-overflow-style: none;  /* IE and Edge */
@@ -73,7 +74,11 @@ search-menu {
 	object-fit: cover;
 }
 
-#search-results { margin-top: 50px; }
+#search-results { 
+	margin-top: 50px; 
+	overflow: auto;
+	height: 100%;
+}
 
 #search-results a {
 	width: 100%;
@@ -123,6 +128,11 @@ search-menu {
 			 <input type="search" autocomplete="off" id="search-input" onkeyup="performSearch()" tabindex="0" placeholder="Search note">
 		 </div>
 	   </header>
-	   <ul id="search-results">
-	   </ul>
+	   
+	   <ul id="search-results" onscroll="myFunction()">
+			 
+		</ul>
+		   
+	   <!-- <ul id="search-results" onscroll="myFunction()">
+	   </ul> -->
 </search-menu>
