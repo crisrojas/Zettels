@@ -35,7 +35,10 @@
 	
 	{{ $themeVariables := resources.Get $themeRoute  }}
 	{{ $styles := resources.Get "css/style.scss" | toCSS }}
-	{{ $main := slice $themeVariables $styles | resources.Concat "css/main.css" | minify | fingerprint }}
+	
+	{{ $syntax := resources.Get "css/utilities/syntax-light.css"}}
+	
+	{{ $main := slice $themeVariables $styles $syntax | resources.Concat "css/main.css" | minify | fingerprint }}
 	
 	
 	<link rel="stylesheet" href="{{ $main.Permalink }}" />

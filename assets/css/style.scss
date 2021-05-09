@@ -531,4 +531,9 @@ table tr:nth-child(odd) {
 // 	border-right: 1px solid #e4e5e6;
 // }
 
+pre {
+	border: 1px solid var(--separator-color);
+	padding: 10px;
+	font-size: 12px;
+}
 
