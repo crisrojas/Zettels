@@ -3,7 +3,9 @@
 {{ $firstBracket := "\\[\\[" }}
 {{ $lastBracket := "\\]\\]" }}
 
-<!-- Don't working for notes with question/exclamation marks 
+<!-- 
+	
+@todo:wikilinks not working for notes with question/exclamation marks
 see lista-de-preguntas-interesantes-a-responder.html
 -->
 {{ $wikiregex := "\\[\\[([^/]+?)\\]\\]" }}
@@ -58,11 +60,6 @@ Más vale pájaro en mano que ciento volando
 {{ $content := $content | replaceRE "::([^/]+?)::" "<mark>$1</mark>" }}
 
 {{ $content := $content | replaceRE "==([^/]+?)==" "<mark>$1</mark>" }}
-
-
-{{ $imageRegex := "!\\[(.*?)\\]\\((.*?)\\)" }}
-
-{{ $content := $content | replaceRE $imageRegex (printf "%s%s%s" "![](notes/" "$2" ")") }}
 
 {{ $content | markdownify }}
 

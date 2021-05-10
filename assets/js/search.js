@@ -161,11 +161,12 @@ function loadIndex() {
 			
 			const permalink = note.permalink
 			
+			
 			var thumbnail = ""
 			if (note.thumbnail === "") {
 				thumbnail = ""
 			} else {
-				thumbnail = '<img src="notes/' + note.thumbnail + '"/>'
+				thumbnail = '<img src="' + note.thumbnail + '"/>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
