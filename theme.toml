@@ -5,12 +5,12 @@ name = "Zettels"
 license = "MIT"
 licenselink = "@todo"
 description = "@todo"
-homepage = "@todo"
-tags = ["@todo"]
-features = ["@todo"]
+homepage = "https://notas.cristian.lat"
+tags = ["bear", "digital garden", "zettelkasten", "note taking"]
+features = ["wikilinks", "backlinks", "bear alike tag system"]
 min_version = "0.0.1"
 assetsDir = "assets"
 
 [author]
-  name = "Cristian Rojas"
-  homepage = "https://crisrojas.com"
+  name = "Cristian Felipe Patiño Rojas"
+  homepage = "https://cristian.lat"

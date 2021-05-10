@@ -1,4 +1,4 @@
-Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](https://crisrojas.com/notes)
+Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](https://notas.cristian.lat)
 
 ### 🚨 Recent changes
 
@@ -18,6 +18,7 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and find a way to localize theme strings.
 - <s>🐻 Bear alike search sidebar</s>
 - Integrate zoom.js
+- Polar Markup support
 - Thumbnails on search component
 
 ### Nice to have

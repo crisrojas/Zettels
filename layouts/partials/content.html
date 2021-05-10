@@ -3,6 +3,9 @@
 {{ $firstBracket := "\\[\\[" }}
 {{ $lastBracket := "\\]\\]" }}
 
+<!-- Don't working for notes with question/exclamation marks 
+see lista-de-preguntas-interesantes-a-responder.html
+-->
 {{ $wikiregex := "\\[\\[([^/]+?)\\]\\]" }}
 
 <!-- @todo: 
@@ -11,7 +14,6 @@ fix regex for cases:
 1-único-ejercicio-por-área-de-interés.html
 antes-de-pensar-en-crear-cursos-he-de-cultivar-mis-notas-evergreen.html
 Categorizamos la información para facilitar el aprendizaje
-tu-cuerpo-es-tu-gimnasio.html
 Más vale pájaro en mano que ciento volando
  -->
 
@@ -43,7 +45,7 @@ Más vale pájaro en mano que ciento volando
 
 {{ $content := .Scratch.Get "content" }}
 
-{{ $content := $content | replaceRE $tagregex3 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br><br>"  | safeHTML }}
+{{ $content := $content | replaceRE $tagregex3 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br>"  | safeHTML }}
 
 {{ $content := $content | replaceRE $tagregex2 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
