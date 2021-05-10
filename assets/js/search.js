@@ -161,12 +161,22 @@ function loadIndex() {
 			// @todo: cleaner way of detecting this (http, https)
 			// const permalink = "http:" + note.permalink
 			const permalink = note.permalink
+			
+			var thumbnail = ""
+			if (note.thumbnail === "") {
+				console.log("empty thumbnail")
+				thumbnail = ""
+			} else {
+				console.log("thumbnail exists")
+				var thumbnail = '<img src="/' + note.thumbnail + '"/>'
+			}
+			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
 			var list_content;
 			if (current_note === permalink) {
 				list_content = '<li><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
 			} else {
-				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + tags + '</a></li>'
+				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + thumbnail + tags + '</a></li>'
 			}
 			
 			const child = document.createElement("li");

@@ -2,6 +2,8 @@
 {{ $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#\\s" }}
 {{ $tagregex := "#([^#\\s\\,]+)" }}
 
+{{ $imageRegex := "!\\[(.*?)\\]\\((.*?)\\)" }}
+
 {{- $.Scratch.Add "index" slice -}}
 {{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
     
@@ -29,7 +31,19 @@
 
     {{ $allTags := (slice $tags3 $tags2 $tags) }}
     
-    {{- $.Scratch.Add "index" (dict "title" $title "permalink" .Permalink "summary" $summary "tags" $allTags ) -}}
+
+    {{ $imagesRaw := .RawContent | findRE $imageRegex }}
+    
+    {{ $.Scratch.Set "thumbnail" "" }}
+    {{ range first 1 $imagesRaw }}
+    {{ $rawItem := . }}
+    {{ $capturedGroup := $rawItem | replaceRE $imageRegex "$2" }}
+    {{ $.Scratch.Set "thumbnail" $capturedGroup }}
+    {{ end }}
+    
+    {{ $thumbnail := $.Scratch.Get "thumbnail" }}
+    
+    {{- $.Scratch.Add "index" (dict "title" $title "permalink" .Permalink "summary" $summary "tags" $allTags "thumbnail" $thumbnail ) -}}
     
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
