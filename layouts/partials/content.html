@@ -59,5 +59,10 @@ Más vale pájaro en mano que ciento volando
 
 {{ $content := $content | replaceRE "==([^/]+?)==" "<mark>$1</mark>" }}
 
+
+{{ $imageRegex := "!\\[(.*?)\\]\\((.*?)\\)" }}
+
+{{ $content := $content | replaceRE $imageRegex (printf "%s%s%s" "![](notes/" "$2" ")") }}
+
 {{ $content | markdownify }}
 

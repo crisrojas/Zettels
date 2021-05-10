@@ -46,6 +46,7 @@
 	
 	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
 	{{ $search := resources.Get "js/search.js" }}
+	{{ $search := $search | resources.ExecuteAsTemplate "js/search.js" . }}
 	{{ $focustag := resources.Get "js/focus-tag.js" }}
 	
 	{{ $scripts := slice $turbolinks $search | resources.Concat "js/main.js" | minify | fingerprint }}
@@ -61,7 +62,7 @@
 <body>
 
 	{{ partialCached "search.html" . }}
-	{{ partial "toolbar.html" . }}
+	{{ partialCached "toolbar.html" . }}
 
 		
 	<main id="main">
