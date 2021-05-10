@@ -158,17 +158,14 @@ function loadIndex() {
 		notes.forEach(note => {
 			const title = '<h4>'+ note.title + '</h4>';
 			const summary = '<div>' + note.summary + '</div>';
-			// @todo: cleaner way of detecting this (http, https)
-			// const permalink = "http:" + note.permalink
+			
 			const permalink = note.permalink
 			
 			var thumbnail = ""
 			if (note.thumbnail === "") {
-				console.log("empty thumbnail")
 				thumbnail = ""
 			} else {
-				console.log("thumbnail exists")
-				var thumbnail = '<img src="/' + note.thumbnail + '"/>'
+				thumbnail = '<img src="notes/' + note.thumbnail + '"/>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
