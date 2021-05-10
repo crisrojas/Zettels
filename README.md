@@ -9,8 +9,7 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 
 ### 🚧 toDo
 
-
-- Allow chosing themes from config file
+- Allow choosing themes from config file
 - Use pretty urls?
 - Append Netlify deploy button to README.md
 - <s>Bear highlight regex: `==highlighted==` && `::highlighted::`</s>
@@ -20,6 +19,7 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - Integrate zoom.js
 - Polar Markup support
 - Thumbnails on search component
+- Add support for Hugo tags
 
 ### Nice to have
 
