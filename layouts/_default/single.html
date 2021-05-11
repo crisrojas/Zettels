@@ -17,7 +17,7 @@
 				<p>&#128274;</p>
 				{{ partial "content.html" . }}
 			{{ else }}
-				<p>&#128274; Nota privada</p>
+				<p>&#128274; {{ i18n "private-note" }}</p>
 			{{ end }}
 		{{- else -}}
 		<!-- 
@@ -39,7 +39,7 @@
 				{{ partial "content.html" .}}
 				{{ else }}
 				<h1>{{ $title }}</h1>
-				<p>&#128274; Nota privada</p>
+				<p>&#128274; {{ i18n "private-note" }}</p>
 				{{ end }}
 			{{ end }}
 		

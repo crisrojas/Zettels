@@ -161,7 +161,6 @@ function loadIndex() {
 			
 			const permalink = note.permalink
 			
-			
 			var thumbnail = ""
 			if (note.thumbnail === "") {
 				thumbnail = ""

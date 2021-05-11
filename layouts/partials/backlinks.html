@@ -10,7 +10,8 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 {{ $wikilink :=  printf "%s%s%s" $firstBracket $filename $lastBracket }}
 
 {{- $.Scratch.Add "backlinks" slice -}}
-<h3>Referenciada en:</h3>
+<h3>{{ i18n "backlinks" }}</h3>
+
 
 <ul>
 {{- range where .Site.RegularPages "Type" "not in"  (slice "page" "html") -}}
@@ -32,6 +33,6 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 {{- $backlinks := $.Scratch.Get "backlinks" -}}   
 
 {{ if le (len $backlinks) 0 }}
-	<li>No hay referencias</li>
+	<li>{{ i18n "no-backlinks" }}</li>
 {{ end }}
 </ul>

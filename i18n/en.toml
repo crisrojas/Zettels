@@ -1,0 +1,6 @@
+[backlinks]
+	other = "Referenced in"
+[private-note]
+	other = "Private note"
+[no-backlinks]
+	other = "No backlinks found"
