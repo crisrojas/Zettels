@@ -178,9 +178,9 @@ function loadIndex() {
 			const tags = '<span style="display:none">' + note.tags + '</span>'
 			var list_content;
 			if (current_note === permalink) {
-				list_content = '<li><a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a></li>'
+				list_content = '<a href="' + permalink + '" class="selected search-item" tabindex="0">' + title + summary + '</a>'
 			} else {
-				list_content = '<li><a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + thumbnail + tags + '</a></li>'
+				list_content = '<a href="' + permalink + '" class="search-item" tabindex="0">' + title + summary + thumbnail + tags + '</a>'
 			}
 			
 			const child = document.createElement("li");
