@@ -166,7 +166,14 @@ function loadIndex() {
 			if (note.thumbnail === "") {
 				thumbnail = ""
 			} else {
-				// thumbnail = '<img src="' + note.thumbnail + '"/>'
+				// @todo: 
+				// this loads the first image of the note
+				// for every note in the vault
+				// this isn't efficient at all
+				// 2 ideas: 
+				// find a way of resizing with hugo
+				// use lazy loading.
+				thumbnail = '<img src="' + note.thumbnail + '"/>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
