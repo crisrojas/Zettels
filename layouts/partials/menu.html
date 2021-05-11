@@ -1,0 +1,42 @@
+<style>
+menu { display: block; }
+#menu {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	background: var(--dark-background-color);
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	opacity: 1;
+	
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	padding: 20px;
+}
+
+#menu li {
+	margin: 12px;	
+}
+
+#menu a {
+	color: var(--selected-text-inactive-background-color);
+	max-width: 200px;
+}
+
+#menu li { text-indent: 0; }
+#menu li:before {
+	content: "";
+	visibility: hidden;
+	display: none;
+}
+
+</style>
+
+
+<menu id="menu">
+	<ul id="tags">
+	</ul>
+</menu>

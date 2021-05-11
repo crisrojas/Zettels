@@ -154,8 +154,9 @@ function loadIndex() {
 	
 		const notes = response;
 		const search_results = document.getElementById('search-results');
+		const tags = document.getElementById('tags');
 		const current_note = window.location.href;
-		notes.forEach(note => {
+		notes.index.forEach(note => {
 			const title = '<h4>'+ note.title + '</h4>';
 			const summary = '<div>' + note.summary + '</div>';
 			
@@ -172,7 +173,7 @@ function loadIndex() {
 				// 2 ideas: 
 				// find a way of resizing with hugo
 				// use lazy loading.
-				thumbnail = '<img src="' + note.thumbnail + '?nf_resize=fit&w=122&h=76"/><span style="display:none";>@attachments</span>'
+				thumbnail = '<img loading="lazy" src="' + note.thumbnail + '?nf_resize=fit&w=122&h=76"/><span style="display:none";>@attachments</span>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
@@ -186,6 +187,12 @@ function loadIndex() {
 			const child = document.createElement("li");
 			child.innerHTML = list_content;
 			search_results.append(child)
+		});
+		
+		notes.tags.forEach(tag => {
+			const child = document.createElement("li");
+			child.innerHTML = '<a onclick="focusTag(this)">' + tag + '</a>'
+			tags.append(child)
 		});
 		
 	  });
