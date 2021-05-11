@@ -549,3 +549,10 @@ p code {
 li img {
 	width: 122px;
 }
+
+.thumbnail {
+	width: 122px;
+	height: 76px;
+	border: 1px solid var(--separator-color);
+	object-fit: cover;
+}

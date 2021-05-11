@@ -13,11 +13,11 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - Use pretty urls?
 - Append Netlify deploy button to README.md
 - <s>Bear highlight regex: `==highlighted==` && `::highlighted::`</s>
-- Code blocks
-- 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and find a way to localize theme strings.
+- <s>Code blocks</s>
+- 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and <s>find a way to localize theme strings.</s>
 - <s>🐻 Bear alike search sidebar</s>
 - Integrate zoom.js
-- Polar Markup support
+- Polar Markup support?
 - Thumbnails on search component
 - Add support for Hugo tags
 

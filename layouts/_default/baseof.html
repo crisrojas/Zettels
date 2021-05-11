@@ -44,17 +44,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
-
-	{{ $search := resources.Get "js/search.js" }}
-	{{ $search := $search | resources.ExecuteAsTemplate "js/search.js" . }}
+	{{ $thumbnails := resources.Get "js/thumbnails.js" }}
+	{{ $search     := resources.Get "js/search.js" }}
 	
-	{{ $scripts := slice $turbolinks $search | resources.Concat "js/main.js" | minify | fingerprint }}
+	{{ $.Scratch.Set "jslibs" slice }}
+	{{ $libs := slice "js/turbolinks.js" "js/thumbnails.js" "js/search.js" }}
 	
-	<script src="{{ $scripts.Permalink }}" type="text/javascript"></script>
+	{{ range $libs }}
+	{{ $.Scratch.Add "jslibs" (resources.Get . ) }}
+	{{ end }}
+	{{ $js := .Scratch.Get "jslibs" | resources.Concat "js/main.js" }}
 	
-	
-	{{ if not .Site.IsServer }}
-		{{ template "_internal/google_analytics.html" . }}
+	{{ if .Site.IsServer }}
+	<script src="{{ $js.Permalink }}"></script>
+	{{ else }}
+	{{ $js := $js | minify | fingerprint }}
+	<script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+	{{ template "_internal/google_analytics.html" . }}
 	{{ end }}
 
 
@@ -67,7 +73,8 @@
 	
 		
 	<main id="main">
-		<div class="note-wrapper">
+		
+		<div id="note-wrapper" class="note-wrapper">
 			{{ block "main" . }}{{ end }}
 		</div>
 	</main>

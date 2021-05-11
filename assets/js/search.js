@@ -189,12 +189,13 @@ function loadIndex() {
 			search_results.append(child)
 		});
 		
-		notes.tags.forEach(tag => {
-			const child = document.createElement("li");
-			child.innerHTML = '<a onclick="focusTag(this)">' + tag + '</a>'
-			tags.append(child)
-		});
-		
+		// @todo: wip
+		// notes.tags.forEach(tag => {
+		// 	const child = document.createElement("li");
+		// 	child.innerHTML = '<a onclick="focusTag(this)">' + tag + '</a>'
+		// 	tags.append(child)
+		// });
+		// 
 	  });
 	}
 	
