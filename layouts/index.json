@@ -5,7 +5,7 @@
 {{ $imageRegex := "!\\[(.*?)\\]\\((.*?)\\)" }}
 
 {{- $.Scratch.Add "index" slice -}}
-{{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
+{{- range where .Site.RegularPages "Type" "not in" (slice "json") -}}
     
     {{- $.Scratch.Add "tags" slice -}}
     
