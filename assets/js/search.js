@@ -166,7 +166,7 @@ function loadIndex() {
 			if (note.thumbnail === "") {
 				thumbnail = ""
 			} else {
-				thumbnail = '<img src="' + note.thumbnail + '"/>'
+				// thumbnail = '<img src="' + note.thumbnail + '"/>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'

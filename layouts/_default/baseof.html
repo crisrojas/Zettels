@@ -35,7 +35,6 @@
 	
 	{{ $themeVariables := resources.Get $themeRoute  }}
 	{{ $styles := resources.Get "css/style.scss" | toCSS }}
-	
 	{{ $syntax := resources.Get "css/utilities/syntax-light.css"}}
 	
 	{{ $main := slice $themeVariables $styles $syntax | resources.Concat "css/main.css" | minify | fingerprint }}
@@ -45,17 +44,19 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
 	{{ $turbolinks := resources.Get "js/turbolinks.js" }}
+
 	{{ $search := resources.Get "js/search.js" }}
 	{{ $search := $search | resources.ExecuteAsTemplate "js/search.js" . }}
-	{{ $focustag := resources.Get "js/focus-tag.js" }}
 	
 	{{ $scripts := slice $turbolinks $search | resources.Concat "js/main.js" | minify | fingerprint }}
 	
 	<script src="{{ $scripts.Permalink }}" type="text/javascript"></script>
 	
+	
 	{{ if not .Site.IsServer }}
 		{{ template "_internal/google_analytics.html" . }}
 	{{ end }}
+
 
 </head>
 
