@@ -2,6 +2,9 @@
 
 Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent false positives: Otherwise, for a note whose filename/title is "now", every note containing the word "now" would be appended as a backlink)
 
+Regex not working for notes with colons on filename.
+
+See "Ejercicio de autobiografía: Sesión 1" from my notes
 -->  
 
 {{ $firstBracket := "\\[\\[" }}
@@ -12,12 +15,12 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 {{- $.Scratch.Add "backlinks" slice -}}
 <h3>{{ i18n "backlinks" }}</h3>
 
-
 <ul>
-{{- range where .Site.RegularPages "Type" "not in"  (slice "page" "html") -}}
+{{- range .Site.RegularPages -}}
 	{{ if (findRE $wikilink .Content) }}
 	
 		{{ $.Scratch.Set "title" "" }}
+		<!-- If bear mode is on we'll show the filename instead of the yaml title -->
 		{{ if eq (.Param "bear") true }}
 			{{ $.Scratch.Set "title" .File.BaseFileName }}
 		{{ else }}
@@ -30,7 +33,7 @@ Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent 
 	{{ end }}
 {{- end -}}
 
-{{- $backlinks := $.Scratch.Get "backlinks" -}}   
+{{- $backlinks := $.Scratch.Get "backlinks" -}}
 
 {{ if le (len $backlinks) 0 }}
 	<li>{{ i18n "no-backlinks" }}</li>

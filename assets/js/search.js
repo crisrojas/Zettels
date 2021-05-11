@@ -172,7 +172,7 @@ function loadIndex() {
 				// 2 ideas: 
 				// find a way of resizing with hugo
 				// use lazy loading.
-				thumbnail = '<img src="' + note.thumbnail + '"/><span style="display:none";>@attachments</span>'
+				thumbnail = '<img src="' + note.thumbnail + '?nf_resize=fit&w=122&h=76"/><span style="display:none";>@attachments</span>'
 			}
 			
 			const tags = '<span style="display:none">' + note.tags + '</span>'
