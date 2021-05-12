@@ -36,7 +36,6 @@
 {{ $content := .Scratch.Get "content" }}
 
 <!-- 
-	
 	====
 	TAGS
 	====
@@ -49,36 +48,28 @@
 	- Más vale pájaro en mano que ciento volando
  -->
 
-<!-- Tags containing spaces ended with a newline -->
-{{ $tagregex3 := "#([^\\s^#][^#]*[^\\s^#])#\\n" }}
-
 <!-- Tags containing spaces ended with a space -->
-{{ $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#\\s" }}
+{{ $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#" }}
 
 <!-- Regular tags -->
 {{ $tagregex := "#([^#\\s\\,]+)" }}
-{{ $tagregexB := "#([^#\\s\\,]+)#" }}
+{{ $tagregexB := "#([^#\\s\\,]+)\\n" }}
 
-{{ $content := $content | replaceRE $tagregex3 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br>"  | safeHTML }}
+{{ $content := $content | replaceRE $tagregexB "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br><br>"  | safeHTML }}
 
 {{ $content := $content | replaceRE $tagregex2 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
-
-{{ $content := $content | replaceRE $tagregexB "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
 {{ $content := $content | replaceRE $tagregex "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
 
-<!-- 
-	
+<!--
 	======================
 	Misc regex replacement
 	======================
-	
  -->
+ 
 {{ $content := $content | replaceRE "->" "→" }}
-
 {{ $content := $content | replaceRE "::([^/]+?)::" "<mark>$1</mark>" }}
-
 {{ $content := $content | replaceRE "==([^/]+?)==" "<mark>$1</mark>" }}
 
 {{ $content | markdownify }}

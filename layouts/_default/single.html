@@ -28,7 +28,6 @@
 			@todo: 
 			- find a better way of doing this (this is false-positive prone)
 			- code refactor
-			- translate keyword from spanish to english
 	    -->
 			{{ $private := .Content | findRE "privado" }}
 			{{ if le (len $private) 0 }}

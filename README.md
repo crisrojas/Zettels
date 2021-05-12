@@ -16,8 +16,9 @@ Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](htt
 - <s>Code blocks</s>
 - 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and <s>find a way to localize theme strings.</s>
 - <s>🐻 Bear alike search sidebar</s>
-- Integrate zoom.js
-- Polar Markup support?
+- Integrate zoom.js?
+- <s>Polar Markup support?</s> (It will be deprecated)
+- Lazy load images
 - Thumbnails on search component
 - Add support for Hugo tags
 
