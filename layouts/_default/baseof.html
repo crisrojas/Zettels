@@ -60,7 +60,6 @@
 	{{ else }}
 	{{ $js := $js | minify | fingerprint }}
 	<script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-	{{ template "_internal/google_analytics.html" . }}
 	{{ end }}
 
 
