@@ -1,22 +1,52 @@
-<!-- Regex logic that sanitizes wikilinks spaces -->
-
+<!-- 
+	
+	=======
+	Wiklinks
+	=======
+	
+	@todo:
+	- wikilinks not working for notes with question/exclamation marks
+	- see lista-de-preguntas-interesantes-a-responder.html
+ -->
+ 
 {{ $firstBracket := "\\[\\[" }}
 {{ $lastBracket := "\\]\\]" }}
 
-<!-- 
-	
-@todo:wikilinks not working for notes with question/exclamation marks
-see lista-de-preguntas-interesantes-a-responder.html
--->
 {{ $wikiregex := "\\[\\[([^/]+?)\\]\\]" }}
 
-<!-- @todo: 
+{{ $wikilinks := .Content | findRE $wikiregex }}
 
-fix regex for cases: 
-1-único-ejercicio-por-área-de-interés.html
-antes-de-pensar-en-crear-cursos-he-de-cultivar-mis-notas-evergreen.html
-Categorizamos la información para facilitar el aprendizaje
-Más vale pájaro en mano que ciento volando
+{{ $.Scratch.Add "content" .RawContent }}
+
+{{ range $wikilinks }}
+
+	{{ $content := . | replaceRE $wikiregex "$1" }}
+	{{ $content := $content | replaceRE "\\?" "\\?" }}
+
+	{{ $wikilink :=  printf "%s%s%s" $firstBracket $content $lastBracket }}
+	
+	{{ $anchorized := $content | anchorize }}
+
+	{{ $link := printf "%s%s%s%s%s%s" "<a href=\"" $anchorized ".html" "\">" $content "</a>" }}
+	
+	{{ $noteContent := $.Scratch.Get "content" | replaceRE $wikilink $link }}
+	{{ $.Scratch.Set "content" $noteContent }}
+{{ end }}
+
+{{ $content := .Scratch.Get "content" }}
+
+<!-- 
+	
+	====
+	TAGS
+	====
+	
+	
+	@todo: Fix regex for cases →
+	- 1-único-ejercicio-por-área-de-interés.html
+	- antes-de-pensar-en-crear-cursos
+	- Categorizamos la información para facilitar el aprendizaje
+	- Más vale pájaro en mano que ciento volando
  -->
 
 <!-- Tags containing spaces ended with a newline -->
@@ -29,24 +59,6 @@ Más vale pájaro en mano que ciento volando
 {{ $tagregex := "#([^#\\s\\,]+)" }}
 {{ $tagregexB := "#([^#\\s\\,]+)#" }}
 
-{{ $subgroup1 := .Content | findRE $wikiregex }}
-
-{{ $.Scratch.Add "content" .RawContent }}
-
-{{ range $subgroup1 }}
-	{{ $rawItem := . }}
-	{{ $capturedGroup := $rawItem | replaceRE $wikiregex "$1" }}
-	{{ $itemPattern :=  printf "%s%s%s" $firstBracket $capturedGroup $lastBracket }}
-	{{ $anchorized := $capturedGroup | anchorize }}
-	
-	{{ $link := printf "%s%s%s%s%s%s" "<a href=\"" $anchorized ".html" "\">" $capturedGroup "</a>" }}
-	
-	{{ $tmpContent := $.Scratch.Get "content" | replaceRE $itemPattern $link }}
-	{{ $.Scratch.Set "content" $tmpContent }}
-{{ end }}
-
-{{ $content := .Scratch.Get "content" }}
-
 {{ $content := $content | replaceRE $tagregex3 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br>"  | safeHTML }}
 
 {{ $content := $content | replaceRE $tagregex2 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
@@ -55,6 +67,14 @@ Más vale pájaro en mano que ciento volando
 
 {{ $content := $content | replaceRE $tagregex "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
+
+<!-- 
+	
+	======================
+	Misc regex replacement
+	======================
+	
+ -->
 {{ $content := $content | replaceRE "->" "→" }}
 
 {{ $content := $content | replaceRE "::([^/]+?)::" "<mark>$1</mark>" }}

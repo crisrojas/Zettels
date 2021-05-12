@@ -1,0 +1,183 @@
+{{ $wikiregex := "\\[\\[([^/]+?)\\]\\]" }}
+{{ .Scratch.Add "failed" slice }}
+
+<!-- Test Regular wikilink -->
+{{ $content := "[[wikilink]]"}}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "wikilink" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Regular wikilinks" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink inside a paragraph -->
+{{ $content := "this is a [[wikilink]] inside some paragraph" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "this is a wikilink inside some paragraph" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilinks inside paragraph" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink with spaces -->
+{{ $content := "[[wikilink with spaces]]" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "wikilink with spaces" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilinks with spaces" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink with spaces inside paragraph -->
+{{ $content := "this is a [[wikilink with spaces]] inside some paragraph" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "this is a wikilink with spaces inside some paragraph" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Spaced wikilink inside paragraph" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- 
+	===============
+	Special symbols
+	===============
+ -->
+
+<!-- Wikilink with question marks -->
+{{ $content := "[[¿wikilink?]]" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "¿wikilink?" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilinks with question marks" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink with question marks and spaces -->
+{{ $content := "[[¿wikilink with spaces?]]" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "¿wikilink with spaces?" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilink with question marks and spaces" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink with colons -->
+{{ $content := "[[wikilink:colons]]" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "wikilink:colons" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilink with colons" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Wikilink with colons and spaces -->
+{{ $content := "[[wikilink with colons and: spaces]]" }}
+{{ $result := $content | replaceRE $wikiregex "$1" }}
+{{ $expectaction := "wikilink with colons and: spaces" }}
+
+{{ if ne $expectaction $result }}
+{{ .Scratch.Add "failed" "Wikilink with colons and spaces" }}
+{{ partial "tests/fail.html" . }}
+{{ end }}
+
+
+<!-- 
+	========================
+	Debugging special symbols 
+	========================
+-->
+
+<!-- Capturing character with dot  -->
+{{ $content := "t" }}
+{{ $regex := "." }}
+
+{{ $result := $content | findRE $regex }}
+{{ $result := index $result 0 }}
+{{ $expectaction := "t" }}
+
+{{ if ne $expectaction $result }}
+	{{ $.Scratch.Add "failed" "Failied capturing single character with dot" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Capturing all characters with dot -->
+{{ $content := "this whole sentence should be captured" }}
+{{ $regex := "." }}
+
+{{ $result := $content | findRE $regex }}
+{{ $result := index $result 0 }}
+{{ $expect := $content }}
+
+{{ if ne $expectaction $result }}
+	{{ $.Scratch.Add "failed" "Whole sentence captured by dot" }}
+	{{ partial "tests/fail.html" . }}
+{{ end}}
+
+<!-- Capturing special characters with dot  -->
+{{ $content := "&¿?/'`:+$*" }}
+{{ $regex := "."  }}
+{{ $expect := $content }}
+
+{{ $result := $content }}
+{{ if ne $expect $result }}
+	{{ $.Scratch.Add "failed" "Capturing special characters with dot" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Capturing exact match for wikilink  -->
+{{ $target := "\\[\\[wikilink\\]\\]" }}
+{{ $content := "this text contains a [[wikilink]] "}}
+{{ $expect := "[[wikilink]]" }}
+
+{{ $result := $content | findRE $target }}
+{{ $result := index $result 0 }}
+
+{{ if ne $result $expect }}
+	{{ $.Scratch.Add "failed" "Capture exact wikilink match" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Capturing exact match for wikilink with special symbol -->
+{{ $target := "\\[\\[wikilink\\?\\]\\]" }}
+{{ $content := "this text contains a [[wikilink?]] "}}
+{{ $expect := "[[wikilink?]]" }}
+
+{{ $result := $content | findRE $target }}
+{{ $result := index $result 0 }}
+
+{{ if ne $result $expect }}
+	{{ $.Scratch.Add "failed" "Capture exact wikilink match" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Replace "?" with empty space -->
+{{ $target := "?" }}
+{{ $result := $target | replaceRE "\\?" " " }}
+{{ $expect := " " }}
+
+{{ if ne $expect $result }}
+	{{ $.Scratch.Add "failed" "Capturing single question mark" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+<!-- Adding escaping characters to "?" -->
+{{ $target := "?" }}
+{{ $result := $target | replaceRE "\\?" "\\\\?" }}
+{{ $expect := "\\\\?" }}
+
+
+{{ if ne $expect $result }}
+	{{ $.Scratch.Add "failed" "Adding escaping slashes to ? character" }}
+	{{ partial "tests/fail.html" . }}
+{{ end }}
+
+
+
+
