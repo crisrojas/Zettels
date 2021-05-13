@@ -1,36 +1,21 @@
 :root {
 	--background: rgba(250, 248, 245, 1.0);
+	--background-search: rgba(250, 248, 245, 1.0);
 	--text-base-color: rgba(75, 53, 8, 1.00);
-	--light-text-color: rgba(136, 102, 42, 1.0);
 	--title-text-color: rgba(99, 90, 71, 1.00);
 	--link-text-color: rgba(11, 53, 135, 1.0);
 	--accent-text-color: rgba(115, 144, 201, 1.0);
-	--insertion-point-color: rgba(75, 53, 8, 1.00);
 	--selected-text-background-color: rgba(184, 133, 80, 0.32);
-	--selected-text-inactive-background-color: rgba(243, 240, 233, 1.0);
-	--style-marker-text-color: rgba(105, 96, 76, 0.6);
-	--invalid-character-color: rgba(136, 102, 42, 1.0);
-	--separator-text-color: rgba(177, 150, 101, 1.0);
+
 	--hashtag-text-color: rgba(255, 255, 255, 1.0);
 	--hashtag-marker-text-color: rgba(255, 255, 255, 1.0);
 	--hashtag-background-color: rgba(174, 147, 101, 0.7);
-	--hashtag-selected-background-color: rgba(136, 102, 42, 1.0);
-	--checkbox-fill-color: rgba(250, 250, 245, 1.0);
-	--checkbox-check-color: rgba(136, 102, 42, 1.0);
 	--highlighter-marker-color: rgba(211, 255, 164, 1.00);
 
 	--separator-color: rgba(233, 225, 211, 1.0);
 	--note-table-cell-selected-color: rgba(244, 235, 221, 1.00);
-	--note-table-cell-selected-inactive-color: rgba(245, 236, 222, 1.00);
 	--note-table-cell-ribbon-color: rgba(175, 148, 101, 1.00);
 	
-	--dark-background-color: rgba(66, 35, 13, 1.00);
-	
-	--heading-color: #645A47;
-	--heading-indicator: #A39E8E;
-	--accent: #0C3486;
-	--accent-light: #7490C8;
-	--hashtag: #C4B190;
-	--hashtag-link: #fff;
-	--divider-color: #B19565;
+	/* --heading-indicator: #B4B4B4; */
+	--search-field-focused-color: #80ABD9;
 }

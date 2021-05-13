@@ -1,9 +1,22 @@
 :root {
---background: #fff;
---text-color: #545454;
---heading-color: #333;
---accent: #de4c4f;
---accent-light: #e06e73;
---hashtag: #b8bfc2;
---hashtag-link: #fff;
+	--background: #fff;
+	--background-search: #FBFBFB;
+	--text-base-color: #545454;
+	--title-text-color: #333;
+	--link-text-color: #de4c4f;
+	--accent-text-color: #e06e73;
+	--selected-text-background-color: #DEDEDE;
+	
+	--hashtag-text-color: rgba(255, 255, 255, 1.0);
+	--hashtag-marker-text-color: rgba(255, 255, 255, 1.0);
+	--hashtag-background-color: #b8bfc2;
+	--highlighter-marker-color: rgba(211, 255, 164, 1.00);
+
+	--separator-color: #DEDEDE;
+	--note-table-cell-selected-color: #fff;
+	--note-table-cell-ribbon-color: #e06e73;
+	
+	--heading-indicator: #B4B4B4;
+	--search-field-focused-color: #80ABD9;
+	
 }

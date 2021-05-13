@@ -4,3 +4,5 @@
 	other = "Nota privada"
 [no-backlinks]
 	other = "No hay referencias"
+[not-found]
+	other = "Nota no encontrada"
