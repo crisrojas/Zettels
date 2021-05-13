@@ -2,7 +2,7 @@
 menu { display: block; }
 #menu {
 	height: 100%;
-	width: 300px;
+	width: 250px;
 	position: fixed;
 	background: var(--dark-background-color);
 	z-index: 1;
@@ -11,10 +11,11 @@ menu { display: block; }
 	overflow-x: hidden;
 	overflow-y: auto;
 	opacity: 1;
-	
+	color: white;
 	-ms-overflow-style: none;  /* IE and Edge */
 	scrollbar-width: none;  /* Firefox */
-	padding: 20px;
+	padding: 8px;
+	padding-top: 40px;
 }
 
 #menu li {
@@ -22,21 +23,94 @@ menu { display: block; }
 }
 
 #menu a {
-	color: var(--selected-text-inactive-background-color);
+	color: white;
 	max-width: 200px;
 }
 
-#menu li { text-indent: 0; }
+#menu li { 
+	text-indent: 0; 
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+	padding: 6px;
+	margin: 0px;
+}
+
+#menu li:hover, .selected {
+	background: var(--note-table-cell-ribbon-color);
+	border-radius: 8px;
+}
+
 #menu li:before {
 	content: "";
 	visibility: hidden;
 	display: none;
 }
 
+#menu ul {
+	margin: 0px;
+}
+
+#menu ul ul {
+	display: none;
+}
+
+#menu ul span {
+	display: flex;
+	margin-left: 32px;
+}
+menu {
+	--menu-text-color: var(--separator-color);
+}
+
+
+#menu svg {
+	fill: var(--menu-text-color);
+	margin-right: 12px;
+	width: 16px;
+}
+
+#menu .chevron {
+	margin-right: 4px;
+}
+
 </style>
+
+<script>
+var showsMenu = false;
+function display(li) {
+	const inside_list = document.getElementById('menu-sublist');
+	
+	if (showsMenu) {
+		inside_list.style.display = "none";
+		showsMenu = false;
+	} else {
+		inside_list.style.display = "block";
+		showsMenu = true;
+	}
+	
+}
+</script>
 
 
 <menu id="menu">
+	<ul>
+		<li onclick="display(this)"><svg class="chevron chevron-right" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="var(--menu-text-color)" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
+		<svg class="chevron-down" style="display:none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="var(--menu-text-color)" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg>
+		<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect fill="none" stroke="var(--menu-text-color)" width="13" height="17" x="3.5" y="1.5"></rect><line fill="none" stroke="var(--menu-text-color)" x1="6" x2="12" y1="12.5" y2="12.5"></line><line fill="none" stroke="var(--menu-text-color)" x1="6" x2="14" y1="8.5" y2="8.5"></line><line fill="none" stroke="var(--menu-text-color)" x1="6" x2="14" y1="6.5" y2="6.5"></line><line fill="none" stroke="var(--menu-text-color)" x1="6" x2="14" y1="10.5" y2="10.5"></line></svg> Notes
+		</li>
+		
+		<ul id="menu-sublist">
+			<li><span><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="var(--menu-text-color)" stroke-width="1.1" d="M17.5,3.71 L17.5,7.72 C17.5,7.96 17.4,8.2 17.21,8.39 L8.39,17.2 C7.99,17.6 7.33,17.6 6.93,17.2 L2.8,13.07 C2.4,12.67 2.4,12.01 2.8,11.61 L11.61,2.8 C11.81,2.6 12.08,2.5 12.34,2.5 L16.19,2.5 C16.52,2.5 16.86,2.63 17.11,2.88 C17.35,3.11 17.48,3.4 17.5,3.71 L17.5,3.71 Z"></path><circle cx="14" cy="6" r="1"></circle></svg>Non tagué</span></li>
+			<li><span><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><ellipse fill="none" stroke="var(--menu-text-color)" cx="6.11" cy="3.55" rx="2.11" ry="2.15"></ellipse><ellipse fill="none" stroke="var(--menu-text-color)" cx="6.11" cy="15.55" rx="2.11" ry="2.15"></ellipse><circle fill="none" stroke="var(--menu-text-color)" cx="13.15" cy="9.55" r="2.15"></circle><rect x="1" y="3" width="3" height="1"></rect><rect x="10" y="3" width="8" height="1"></rect><rect x="1" y="9" width="8" height="1"></rect><rect x="15" y="9" width="3" height="1"></rect><rect x="1" y="15" width="3" height="1"></rect><rect x="10" y="15" width="8" height="1"></rect></svg>Todo</span></li>
+			<li><span><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect fill="none" stroke="var(--menu-text-color)" height="10" width="13" y="8.5" x="3.5"></rect><path fill="none" stroke="var(--menu-text-color)" d="M6.5,8 L6.5,4.88 C6.5,3.01 8.07,1.5 10,1.5 C11.93,1.5 13.5,3.01 13.5,4.88 L13.5,8"></path></svg>Verouillés</span></li>
+		</ul>
+	</ul>
 	<ul id="tags">
+		<li>
+			<svg class="chevron" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="var(--menu-text-color)" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
+			<svg class="hashtag-icon" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M15.431,8 L15.661,7 L12.911,7 L13.831,3 L12.901,3 L11.98,7 L9.29,7 L10.21,3 L9.281,3 L8.361,7 L5.23,7 L5,8 L8.13,8 L7.21,12 L4.23,12 L4,13 L6.98,13 L6.061,17 L6.991,17 L7.911,13 L10.601,13 L9.681,17 L10.611,17 L11.531,13 L14.431,13 L14.661,12 L11.76,12 L12.681,8 L15.431,8 Z M10.831,12 L8.141,12 L9.061,8 L11.75,8 L10.831,12 Z"></path></svg> 1</li>
+	
 	</ul>
 </menu>

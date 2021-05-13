@@ -1,5 +1,5 @@
 :root {
-	--background: #fff;
+	--background: #FBFBFB;
 	--background-search: #FBFBFB;
 	--text-base-color: #545454;
 	--title-text-color: #333;
@@ -17,6 +17,7 @@
 	--note-table-cell-ribbon-color: #e06e73;
 	
 	--heading-indicator: #B4B4B4;
+	--dark-background-color: #2E3235;
 	--search-field-focused-color: #80ABD9;
 	
 }
