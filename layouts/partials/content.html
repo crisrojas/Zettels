@@ -40,26 +40,60 @@
 	TAGS
 	====
 	
-	
-	@todo: Fix regex for cases →
-	- 1-único-ejercicio-por-área-de-interés.html
-	- antes-de-pensar-en-crear-cursos
-	- Categorizamos la información para facilitar el aprendizaje
-	- Más vale pájaro en mano que ciento volando
  -->
 
-<!-- Tags containing spaces ended with a space -->
-{{ $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#" }}
 
-<!-- Regular tags -->
-{{ $tagregex := "#([^#\\s\\,]+)" }}
-{{ $tagregexB := "#([^#\\s\\,]+)\\n" }}
+<!-- 
+	===================================
+	Regular tags followed by a new line 
+	===================================
 
-{{ $content := $content | replaceRE $tagregexB "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a><br><br>"  | safeHTML }}
+	#mytag/with-no-espaces
 
-{{ $content := $content | replaceRE $tagregex2 "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
+	New line
+-->
+{{ $tagregexN := "#([^#\\s\\,:}]+)\\n" }}
 
-{{ $content := $content | replaceRE $tagregex "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
+
+<!-- 
+	===================================
+	Regular tags followed by a hashtag
+	===================================
+
+	#mytag/with-no-espaces
+
+	New line
+-->
+{{ $tagregexH := "#([^#\\s\\,:}]+)#" }}
+
+<!-- 
+	======================
+	Tags containing spaces 
+	======================
+
+	#mytag/with espaces#
+-->
+{{ $tagregexS := "#([^\\s^#][^#]*[^\\s^#])#" }}
+
+
+<!-- 
+	============
+	Regular tags 
+	============
+
+	#mytag
+	#mytag/could/be/nested
+-->
+{{ $tagregex := "[^/a-z]#([^#\\s\\,:}]+)" }}
+
+
+{{ $content := $content | replaceRE $tagregexN "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>\n"  | safeHTML }}
+
+{{ $content := $content | replaceRE $tagregexS "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
+
+{{ $content := $content | replaceRE $tagregexH "<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
+
+{{ $content := $content | replaceRE $tagregex "\n<a class=\"hashtag\" onclick=\"focusTag(this)\">$1</a>"  | safeHTML }}
 
 
 <!--
@@ -73,4 +107,3 @@
 {{ $content := $content | replaceRE "==([^/]+?)==" "<mark>$1</mark>" }}
 
 {{ $content | markdownify }}
-
