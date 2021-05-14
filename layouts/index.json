@@ -31,8 +31,14 @@
     {{ $unifiedTagSlice := union $tags3 $tags2 }}
     {{ $unionTags := union $tags $unifiedTagSlice }}
     
+    {{- range $unionTags -}}
+        {{ $tag := . | replaceRE "\\n" " " }}
+        {{ $tag := $tag | replaceRE "#" "" }}
+        {{- $.Scratch.Add "tags" $tag }}
+    {{- end -}}
+    
     {{ $allTags := (slice $tags3 $tags2 $tags) }}
-    {{- $.Scratch.Add "tags" $unionTags }}
+   {{/*{{- $.Scratch.Add "tags" $unionTags }}*/}}
 
     {{ $imagesRaw := .RawContent | findRE $imageRegex }}
     
