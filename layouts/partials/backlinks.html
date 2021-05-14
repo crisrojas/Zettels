@@ -2,9 +2,7 @@
 
 Search for [[wikilink]] instead of "wikilink" when finding backlinks to prevent false positives: Otherwise, for a note whose filename/title is "now", every note containing the word "now" would be appended as a backlink)
 
-Regex not working for notes with colons on filename.
-
-See "Ejercicio de autobiografía: Sesión 1" from my notes
+Regex not working for notes with colons on filename because hugo .File.BaseFileName returns a string with colons removed.
 -->  
 
 {{ $firstBracket := "\\[\\[" }}
