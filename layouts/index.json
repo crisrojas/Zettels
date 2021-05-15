@@ -1,6 +1,6 @@
 {{- $tagregex3 := "#([^\\s^#][^#]*[^\\s^#])#\\n" -}}
 {{- $tagregex2 := "#([^\\s^#][^#]*[^\\s^#])#\\s" -}}
-{{- $tagregex := "#([^#\\s\\,]+)" -}}
+{{- $tagregex := "[^/A-z]#([^#\\s\\,:}\\.]+)" -}}
 
 {{- $imageRegex := "!\\[(.*?)\\]\\((.*?)\\)" -}}
 
@@ -32,13 +32,13 @@
     {{ $unionTags := union $tags $unifiedTagSlice }}
     
     {{- range $unionTags -}}
-        {{ $tag := . | replaceRE "\\n" " " }}
+        {{ $tag := . | replaceRE "\\n" "" }}
+        {{ $tag := $tag | replaceRE "\\s" "" }}
         {{ $tag := $tag | replaceRE "#" "" }}
         {{- $.Scratch.Add "tags" $tag }}
     {{- end -}}
     
     {{ $allTags := (slice $tags3 $tags2 $tags) }}
-   {{/*{{- $.Scratch.Add "tags" $unionTags }}*/}}
 
     {{ $imagesRaw := .RawContent | findRE $imageRegex }}
     
