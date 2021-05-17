@@ -1,5 +1,7 @@
 
-Bear notes publishing tool / Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. 
+# Bear notes publishing tool
+
+Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. 
 
 Live example → [here](https://notas.cristian.lat)
 
@@ -80,7 +82,7 @@ On your config file, pass the chosen theme as a parameter:
 
 You can chose between *duotone-light* and *red-graphite*.
 
-More themes will be added in the future.
+More Bear themes will be added in the future.
 
 ### Chosing language
 
@@ -115,10 +117,13 @@ Spaces in wikilinks are supported: `[[spaced link]]` outputs `<a href="spaced-li
 
 Backlinks are supported. Example → [here](https://notas.cristian.lat/empieza-haciendo-lo-que-sea-necesario-despu%C3%A9s-haz-lo-que-sea-posible-sin-darte-cuenta-y-al-cabo-de-un-tiempo-estar%C3%A1s-haciendo-lo-imposible.html)
 
+### Nested tags
+
+Nested tags inside note content are rendered. Expect some errors on tricky cases.
 
 ### UI/UX
 
-If you're thinking this looks a little too much like Bear, you're right.
+If you're thinking this obviously looks a little too much like Bear, you're right.
 
 This is not coincidental. The reasons are basically:
 
