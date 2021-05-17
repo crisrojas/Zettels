@@ -1,65 +1,100 @@
-Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. [Live example](https://notas.cristian.lat)
 
-### 🚨 Recent changes
+Bear notes publishing tool / Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. 
 
-- [Bear app](https://bear.app) alike interface (because I'm in ❤️ with 🐻)
-- Abstracted theme variables to their own file. This will allow better customization in the future
-- Added support for spaces inside links
-- Cleaned the project. <s>Temporally removed search feature</s>
+Live example → [here](https://notas.cristian.lat)
 
-### 🚧 toDo
-
-- Allow choosing themes from config file
-- Use pretty urls?
-- Append Netlify deploy button to README.md
-- <s>Bear highlight regex: `==highlighted==` && `::highlighted::`</s>
-- <s>Code blocks</s>
-- 🇪🇸 → 🇬🇧: <s>Change "privado" param key to "private"</s> and <s>find a way to localize theme strings.</s>
-- <s>🐻 Bear alike search sidebar</s>
-- Integrate zoom.js?
-- <s>Polar Markup support?</s> (It will be deprecated)
-- Lazy load images
-- Thumbnails on search component
-- Add support for Hugo tags
-
-### Nice to have
-
-- Obsidian alike nodes graph
-- Bear nested tags renderer ❤️
+![Screenshot1](screenshot1.png)
+![Screenshot2](screenshot2.png)
 
 ### 💻 Installing
 
 `git clone` this repo inside the "themes" folder or submodule it with `git submodule`.
 
-
 ```bash
 git submodule add https://github.com/crisrojas/zettels.git themes/zettels
 ```
 
+From bear, export your notes as markdown into the content folder.
+You'll also need to put there an _index.md file. This will be the webiste entry point.
+
+To make things easier you could use one of this tools:
+
+- [Bear export](https://github.com/andymatuschak/Bear-Markdown-Export)
+- [Bhugo](https://github.com/Zach-Johnson/bhugo/blob/master/main.go) (Be aware that native Hugo tags aren't supported yet)
+- [Bear markdown images fixer](https://gist.github.com/crisrojas/6662f9fc78a99dc56c2c268a713a60ee) (please, make a backup before running the script)
+
+
 ### ⚙️ Config file
 
-You would want to add some elements inside your `config.toml` file to have all the features (uglyURLs, output json for search index, ...)
+This is the `config.toml` [I'm using for publishing my notes](https://notas.cristian.lat). 
+
+I'll add more details about usage in the future. For now you can copy-paste and replace the variables to fit your needs.
+
+
 
 ```toml
-languageCode = "en-EN"
-title = "Your site's title"
-theme = "zettels"
-uglyURLS=  true
+languageCode = "es-ES"
+title = "Notas"
+uglyURLS =  true
+
+relativeURLs = true
+
 publishDir = "public"
-pygmentsUseClasses=true
-googleAnalytics = "Your google analytics number"
-# assetDir = "themes/zettels/assets"
+pygmentsUseClasses = true
+
+assetDir = "themes/zettels/assets"
+
+DefaultContentLanguage = "es"
+
+theme = "zettels"
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "JSON"]
+
 [params]
+    theme = "duotone-light" 
+    bear = true
     favicon = "favicon.ico"
+    author = "Cristian Rojas"
+
+# Enable tags.
+[taxonomies]
+    tag = "tags"
+
+
+# Allows rendering the html inside markdown
 [markup.goldmark.renderer]
 unsafe= true
 ```
 
+> ℹ bear = true uses filename as a title on the frontend instead the title yaml property.
+
+### Themes
+
+On your config file, pass the chosen theme as a parameter:
+
+```toml
+[params]
+  theme = "duotone-light" 
+```
+
+You can chose between *duotone-light* and *red-graphite*.
+
+More themes will be added in the future.
+
+### Chosing language
+
+On your config file, pass the chosen language as a parameter:
+
+```tom
+DefaultContentLanguage = "es"
+```
+
+Languages available: Spanish ("es"), English ("en"), French ("fr")
+
 ### 🔗 Linking notes
 
-Linking through double-brackets syntax. 
+Linking is done through double-brackets syntax. 
 
 Ex.: `[[wikilink]]`, where "wikilink" is the filename of the note to be linked.
 
@@ -78,12 +113,58 @@ Spaces in wikilinks are supported: `[[spaced link]]` outputs `<a href="spaced-li
 
 ### 🔙 Backlinks
 
-Title of referencing note is need for backlinking, so make sure you set a title for all your notes in the yaml metadata.
+Backlinks are supported. Example → [here](https://notas.cristian.lat/empieza-haciendo-lo-que-sea-necesario-despu%C3%A9s-haz-lo-que-sea-posible-sin-darte-cuenta-y-al-cabo-de-un-tiempo-estar%C3%A1s-haciendo-lo-imposible.html)
 
-```
----
-title: My awesome note
----
 
-Hi! This is the content of my awesome note.
-```
+### UI/UX
+
+If you're thinking this looks a little too much like Bear, you're right.
+
+This is not coincidental. The reasons are basically:
+
+- I ❤️ 🐻
+- [I've tried before](https://5fbd3f8577526e0008aeee8b--zkcrisrojas.netlify.app/notes) to implement a good navigational UI for an online zettelkasten. I failed.
+- Bear interface has been already polished from trial and error. No need to reinvent the wheel.
+- I wanted a tool to publish my Bear notes and also wanted to "feel at home" when navigating.
+- Not having to worry about design decisions boosts dev speed.
+
+
+### Shortcuts
+
+To open index/search hit:
+
+- <svg style="margin-right:5px" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M0 12v-8.646l10-1.355v10.001h-10zm11 0h13v-12l-13 1.807v10.193zm-1 1h-10v7.646l10 1.355v-9.001zm1 0v9.194l13 1.806v-11h-13z"/></svg> ` Ctr` + `K` 
+-  `Cmd` + `K`
+
+### 🚧 toDo
+
+- Adding more themes
+- Allow custom CSS?
+- Escape wikilinks inside inline code blocks
+- Correct tag regex for special cases and add unit tests for both, wiki-regex and tag-regex.
+- Create quickstart repo and add Netlify deploy button.
+- 🇪🇸 → 🇬🇧: Change "privado" tag finder to "private-note"
+- Integrate an image zoom library?
+- Side menu: toDos, private notes, tag list, etc...
+- Thumbnails on search component (from now we're loading the first image of each note from the very beginning without any kind of optimization)
+- Lazy load those thumbnails
+- Add support for Hugo tags (yaml)
+- Integrate [slideout js](https://slideout.js.org)
+
+### Done
+
+- <s>Allow choosing themes from config file</s>
+- <s>Bear highlight regex: `==highlighted==` && `::highlighted::`</s>
+- <s>Code blocks</s>
+- <s>find a way to localize theme strings.</s>
+- <s>🐻 Bear alike search sidebar</s>
+- <s>Polar Markup support?</s> (Nope → [It will be deprecated](https://www.reddit.com/r/bearapp/comments/n73akc/new_to_bear_markdown_comparability_mode_or_not/gxuj81r?utm_source=share&utm_medium=web2x&context=3))
+
+### Maybe one day/ Nice to have
+
+- Theme selector from the frontend
+- Dark theme detector from OS settings?
+- Obsidian alike nodes graph
+- Bear alike nested tag list
+- Port frontend to a more [SPA alike tech](https://svelte.dev)
+- SSG from Bear SQLite database ([wip?](https://github.com/crisrojas/miyanoSwift.git))
