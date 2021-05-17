@@ -1,5 +1,5 @@
 
-# Bear notes publishing tool
+# Bear notes Hugo theme
 
 Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. 
 
