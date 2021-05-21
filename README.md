@@ -19,9 +19,9 @@ You'll also need to put there an _index.md file. This will be the webiste entry 
 
 To make things easier you could use one of this tools:
 
-- [Bear export](https://github.com/andymatuschak/Bear-Markdown-Export)
+- [Bear Markdown Export](https://github.com/andymatuschak/Bear-Markdown-Export)
 - [Bhugo](https://github.com/Zach-Johnson/bhugo/blob/master/main.go) (Be aware that native Hugo tags aren't supported yet)
-- [Bear markdown images fixer](https://gist.github.com/crisrojas/6662f9fc78a99dc56c2c268a713a60ee) (please, make a backup before running the script)
+- [Bear markdown images fixer script](https://gist.github.com/crisrojas/6662f9fc78a99dc56c2c268a713a60ee) (please, make a backup before running the script)
 
 
 ### ⚙️ Config file
@@ -69,7 +69,7 @@ unsafe= true
 
 > ℹ bear = true uses filename as a title on the frontend instead the title yaml property.
 
-### Themes
+### 🎨 Themes
 
 On your config file, pass the chosen theme as a parameter:
 
@@ -82,7 +82,7 @@ You can chose between *duotone-light* and *red-graphite*.
 
 More themes will be added in the future.
 
-### Chosing language
+### 🌎 Language
 
 On your config file, pass the chosen language as a parameter:
 
@@ -149,6 +149,8 @@ To open index/search hit:
 - Thumbnails on search component (from now we're loading the first image of each note from the very beginning without any kind of optimization)
 - Lazy load those thumbnails
 - Add support for Hugo tags (yaml)
+- Add [[links to/headings]] support. See [this hugo thread](https://discourse.gohugo.io/t/support-wiki-internal-link-converson-to-relref-shortcode/6074) for an idea of the regex implementation
+- Add Zettels to the [Hugo theme repository](https://github.com/gohugoio/hugoThemes)
 - Integrate [slideout js](https://slideout.js.org)
 
 ### Done

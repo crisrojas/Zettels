@@ -437,6 +437,11 @@ h4 {
 	margin-top: 1.6em;
 }
 
+svg + ul,
+svg + ol {
+	margin-top: 0;
+}
+
 * + h2,
 * + h3,
 * + h4 {
