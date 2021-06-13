@@ -8,7 +8,7 @@ Live example → [here](https://notas.cristian.lat)
 ![Screenshot1](screenshot1.png)
 ![Screenshot2](screenshot2.png)
 
-### 💻 Installing && running
+### 💻 Installing & running
 
 On your `config.toml`, set the theme as follows: theme = `"github.com/crisrojas/zettels"`, alternative you could just `git clone` this repo inside the "themes" folder or submodule it with `git submodule`.
 
@@ -25,7 +25,7 @@ To make things easier you could use one of this tools:
 - [Bhugo](https://github.com/Zach-Johnson/bhugo/blob/master/main.go) (Be aware that native Hugo tags aren't supported yet)
 - [Bear markdown images fixer script](https://gist.github.com/crisrojas/6662f9fc78a99dc56c2c268a713a60ee) (please, make a backup before running the script)
 
-Run with `hugo server --disableFastRender` (this will avoid weird behavior as content being rendred multiple times for each note)
+Run with `hugo server --disableFastRender` , this will avoid a weird bug that I've not tracked yet (content being rendered multiple times)
 
 
 ### ⚙️ Config file
