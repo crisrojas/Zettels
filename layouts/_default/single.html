@@ -29,7 +29,7 @@
 			- find a better way of doing this (this is false-positive prone)
 			- code refactor
 	    -->
-			{{ $private := .Content | findRE "privado" }}
+			{{ $private := .Content | findRE "private-note" }}
 			{{ if le (len $private) 0 }}
 				{{ partial "content.html" . }}
 			{{ else }}
