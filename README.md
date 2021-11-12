@@ -3,7 +3,10 @@
 
 Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme. 
 
-Live example → [here](https://notas.cristian.lat)
+### Sites using zettels
+
+- https://notas.cristian.lat
+- https://digitalgarden.guidopercu.dev/
 
 ![Screenshot1](screenshot1.png)
 ![Screenshot2](screenshot2.png)
