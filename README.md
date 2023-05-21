@@ -5,8 +5,9 @@ Online Zettelkasten/Digital garden [Hugo](https://gohugo.io/) theme.
 
 ### Sites using zettels
 
-- https://notas.cristian.lat
+- https://dilrong.com
 - https://digitalgarden.guidopercu.dev/
+- https://notas.cristian.lat
 
 ![Screenshot1](screenshot1.png)
 ![Screenshot2](screenshot2.png)
